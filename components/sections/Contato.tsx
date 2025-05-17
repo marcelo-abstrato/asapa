@@ -1,8 +1,8 @@
 "use client"
 
 import {Button} from "@/components/ui/button"
-import {Facebook, Instagram} from "lucide-react"
-import {useState} from "react"
+import {Facebook, Instagram, X} from "lucide-react"
+import {useEffect, useState} from "react"
 
 export function Contato() {
     const [formData, setFormData] = useState({
@@ -20,6 +20,19 @@ export function Contato() {
         error: ""
     });
 
+    const [showThankYouPopup, setShowThankYouPopup] = useState(false);
+
+    // Auto-close popup after 5 seconds
+    useEffect(() => {
+        if (showThankYouPopup) {
+            const timer = setTimeout(() => {
+                setShowThankYouPopup(false);
+            }, 5000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [showThankYouPopup]);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {id, value} = e.target;
         setFormData(prev => ({...prev, [id]: value}));
@@ -27,6 +40,10 @@ export function Contato() {
 
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData(prev => ({...prev, newsletter: e.target.checked}));
+    };
+
+    const closeThankYouPopup = () => {
+        setShowThankYouPopup(false);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -55,6 +72,9 @@ export function Contato() {
                 success: true,
                 error: ""
             });
+
+            // Show thank you popup
+            setShowThankYouPopup(true);
 
             // Reset form after successful submission
             setFormData({
@@ -176,7 +196,7 @@ export function Contato() {
                         </div>
                     </div>
                     <div className="space-y-4">
-                        {status.submitted && status.success ? (
+                        {status.submitted && status.success && !showThankYouPopup ? (
                             <div
                                 className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
                                 role="alert">
@@ -270,6 +290,30 @@ export function Contato() {
                     </div>
                 </div>
             </div>
+            {/* Thank You Popup */}
+            {showThankYouPopup && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white text-[#1d4ed8] p-6 rounded-lg shadow-lg max-w-md w-full relative">
+                        <button
+                            onClick={closeThankYouPopup}
+                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                            aria-label="Fechar"
+                        >
+                            <X className="h-5 w-5"/>
+                        </button>
+                        <div className="text-center">
+                            <h3 className="text-xl font-bold mb-2">Obrigado pelo seu contato!</h3>
+                            <p className="mb-4">Recebemos sua mensagem e retornaremos em breve.</p>
+                            <Button
+                                onClick={closeThankYouPopup}
+                                className="bg-[#1d4ed8] text-white hover:bg-[#1e40af]"
+                            >
+                                Fechar
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     )
 }

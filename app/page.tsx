@@ -2,7 +2,7 @@ import Image from "next/image"
 import {DesktopNav, MobileMenu} from "@/components/navigation"
 import {navLinks} from "@/mocks/navigation"
 import {SpeedInsights} from "@vercel/speed-insights/next"
-import {Contato, Footer} from "@/components/sections"
+import {Associese, Contato, Diretoria, Footer, MissaoVisaoValores} from "@/components/sections"
 
 export default function Home() {
   return (
@@ -22,15 +22,18 @@ export default function Home() {
           <main className="flex-1">
               {/*<Hero/>*/}
               {/*<QuemSomos/>*/}
-              {/*<MissaoVisaoValores/>*/}
-              {/*<Diretoria/>*/}
+              <MissaoVisaoValores/>
+              <Diretoria/>
               {/*<Eventos/>*/}
-              {/*<Associese/>*/}
+              {/*Todo: remover tipo de Associacao*/}
+              <Associese/>
               {/*<Doacao/>*/}
               {/*<Transparencia/>*/}
               {/*<Noticias/>*/}
+              {/*TODO: deixar o receber news ativo, remover a verificacao de sucesso ou erro*/}
               <Contato/>
       </main>
+          {/*Todo integracao do newsletter*/}
           <Footer/>
     </div>
   )
