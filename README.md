@@ -24,6 +24,13 @@ Contains utility functions and shared code:
 
 - `/lib/helpers`: Helper functions
 - `/lib/hooks`: React hooks
+- `/lib/prisma.ts`: Prisma client setup with Accelerate extension
+
+### `/prisma`
+
+Contains Prisma ORM files:
+
+- `/prisma/schema.prisma`: Database schema definition
 
 ### `/public`
 
@@ -48,6 +55,74 @@ import {MobileMenu, DesktopNav} from "@/components/navigation";
 // Import from a specific file
 import {cn} from "@/lib/helpers/css-utils";
 ```
+
+## Database Setup
+
+This project uses Prisma ORM with PostgreSQL. Follow these steps to set up the database:
+
+1. Make sure you have PostgreSQL installed and running
+2. Create a `.env` file in the root directory with your database connection string:
+
+```
+DATABASE_URL="postgresql://username:password@localhost:5432/asapa?schema=public"
+```
+
+3. Generate the Prisma client:
+
+```bash
+npm run prisma:generate
+# or
+yarn prisma:generate
+```
+
+4. If you need to create or update the database schema:
+
+```bash
+npx prisma db push
+# or
+yarn prisma db push
+```
+
+5. Seed the database with initial data:
+
+```bash
+npm run prisma:seed
+# or
+yarn prisma:seed
+# or
+npx prisma db seed
+```
+
+## Email Setup
+
+This project uses Nodemailer to send emails from the contact form. Follow these steps to set up the email functionality:
+
+1. Create a `.env.local` file in the root directory with your email configuration:
+
+```
+# Email configuration
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_SECURE=false
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+EMAIL_FROM=noreply@asapa.com.br
+```
+
+2. Replace the placeholder values with your actual SMTP server details and credentials:
+   - `EMAIL_HOST`: Your SMTP server host (e.g., smtp.gmail.com for Gmail)
+   - `EMAIL_PORT`: Your SMTP server port (typically 587 for TLS or 465 for SSL)
+   - `EMAIL_SECURE`: Set to "true" if using SSL (port 465), "false" for TLS (port 587)
+   - `EMAIL_USER`: Your email address
+   - `EMAIL_PASS`: Your email password or app password
+   - `EMAIL_FROM`: The sender email address shown in sent emails
+
+3. If using Gmail, you'll need to create an App Password:
+   - Go to your Google Account > Security > 2-Step Verification
+   - At the bottom, select "App passwords"
+   - Select "Mail" as the app and "Other" as the device
+   - Enter a name (e.g., "ASAPA Website")
+   - Click "Generate" and use the generated password as your `EMAIL_PASS`
 
 ## Getting Started
 

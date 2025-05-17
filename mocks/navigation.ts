@@ -17,7 +17,7 @@ export const navLinks = [
         // ],
     },
     {
-        href: "#eventos",
+        href: "/eventos",
         label: "Eventos",
         // submenu: [
         //     {href: "#eventos-futuros", label: "Eventos Futuros"},

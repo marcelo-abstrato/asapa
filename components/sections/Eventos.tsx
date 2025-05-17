@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import {Button} from "@/components/ui/button"
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
 import {ChevronRight} from "lucide-react"
@@ -175,10 +176,12 @@ export function Eventos() {
                 </Tabs>
 
                 <div className="flex justify-center mt-10">
-                    <Button variant="outline" className="text-[#1d4ed8] border-[#1d4ed8]">
-                        Ver Todos os Eventos
-                        <ChevronRight className="ml-2 h-4 w-4"/>
-                    </Button>
+                    <Link href="/eventos">
+                        <Button variant="outline" className="text-[#1d4ed8] border-[#1d4ed8]">
+                            Ver Todos os Eventos
+                            <ChevronRight className="ml-2 h-4 w-4"/>
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>

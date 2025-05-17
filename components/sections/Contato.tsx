@@ -1,7 +1,80 @@
+"use client"
+
 import {Button} from "@/components/ui/button"
-import {Facebook, Instagram, Twitter} from "lucide-react"
+import {Facebook, Instagram} from "lucide-react"
+import {useState} from "react"
 
 export function Contato() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        newsletter: false
+    });
+
+    const [status, setStatus] = useState({
+        submitting: false,
+        submitted: false,
+        success: false,
+        error: ""
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const {id, value} = e.target;
+        setFormData(prev => ({...prev, [id]: value}));
+    };
+
+    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData(prev => ({...prev, newsletter: e.target.checked}));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        setStatus({...status, submitting: true});
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Ocorreu um erro ao enviar a mensagem');
+            }
+
+            setStatus({
+                submitting: false,
+                submitted: true,
+                success: true,
+                error: ""
+            });
+
+            // Reset form after successful submission
+            setFormData({
+                name: "",
+                email: "",
+                subject: "",
+                message: "",
+                newsletter: false
+            });
+
+        } catch (error) {
+            setStatus({
+                submitting: false,
+                submitted: true,
+                success: false,
+                error: error instanceof Error ? error.message : 'Ocorreu um erro ao enviar a mensagem'
+            });
+        }
+    };
+
     return (
         <section id="contato" className="w-full py-12 md:py-24 bg-[#1d4ed8] text-white">
             <div className="container px-4 md:px-6">
@@ -35,7 +108,7 @@ export function Contato() {
                                 </div>
                                 <div>
                                     <p className="font-medium">Endereço</p>
-                                    <p className="text-white/80">Av. Beira Mar, 1000 - Praia Grande</p>
+                                    <p className="text-white/80">Rua Francisco Vieira, 701 - Florianópolis - SC</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">
@@ -59,7 +132,7 @@ export function Contato() {
                                 </div>
                                 <div>
                                     <p className="font-medium">Telefone</p>
-                                    <p className="text-white/80">(00) 1234-5678</p>
+                                    <p className="text-white/80">(48) 9 9988-3298</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">
@@ -83,7 +156,7 @@ export function Contato() {
                                 </div>
                                 <div>
                                     <p className="font-medium">Email</p>
-                                    <p className="text-white/80">contato@associacaosurf.com.br</p>
+                                    <p className="text-white/80">contato@asapa.com.br</p>
                                 </div>
                             </div>
                         </div>
@@ -100,60 +173,100 @@ export function Contato() {
                             >
                                 <Facebook className="h-5 w-5"/>
                             </a>
-                            <a
-                                href="#"
-                                className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
-                            >
-                                <Twitter className="h-5 w-5"/>
-                            </a>
                         </div>
                     </div>
                     <div className="space-y-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <label htmlFor="name" className="text-sm font-medium">
-                                    Nome
+                        {status.submitted && status.success ? (
+                            <div
+                                className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                                role="alert">
+                                <strong className="font-bold">Sucesso!</strong>
+                                <span className="block sm:inline"> Sua mensagem foi enviada com sucesso.</span>
+                            </div>
+                        ) : status.submitted && !status.success ? (
+                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                 role="alert">
+                                <strong className="font-bold">Erro!</strong>
+                                <span className="block sm:inline"> {status.error}</span>
+                            </div>
+                        ) : null}
+
+                        <form onSubmit={handleSubmit}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <label htmlFor="name" className="text-sm font-medium">
+                                        Nome
+                                    </label>
+                                    <input
+                                        id="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        className="flex h-10 w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
+                                        placeholder="Seu nome"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label htmlFor="email" className="text-sm font-medium">
+                                        Email
+                                    </label>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        className="flex h-10 w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
+                                        placeholder="seu@email.com"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2 mt-4">
+                                <label htmlFor="subject" className="text-sm font-medium">
+                                    Assunto
                                 </label>
                                 <input
-                                    id="name"
+                                    id="subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
                                     className="flex h-10 w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
-                                    placeholder="Seu nome"
+                                    placeholder="Assunto da mensagem"
+                                    required
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-medium">
-                                    Email
+                            <div className="space-y-2 mt-4">
+                                <label htmlFor="message" className="text-sm font-medium">
+                                    Mensagem
                                 </label>
-                                <input
-                                    id="email"
-                                    type="email"
-                                    className="flex h-10 w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
-                                    placeholder="seu@email.com"
-                                />
+                                <textarea
+                                    id="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    className="flex min-h-[120px] w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
+                                    placeholder="Sua mensagem..."
+                                    required
+                                ></textarea>
                             </div>
-                        </div>
-                        <div className="space-y-2">
-                            <label htmlFor="subject" className="text-sm font-medium">
-                                Assunto
-                            </label>
-                            <input
-                                id="subject"
-                                className="flex h-10 w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
-                                placeholder="Assunto da mensagem"
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label htmlFor="message" className="text-sm font-medium">
-                                Mensagem
-                            </label>
-                            <textarea
-                                id="message"
-                                className="flex min-h-[120px] w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
-                                placeholder="Sua mensagem..."
-                            ></textarea>
-                        </div>
-                        <Button className="w-full bg-white text-[#1d4ed8] hover:bg-white/90">Enviar
-                            Mensagem</Button>
+                            <div className="flex items-center space-x-2 mt-4">
+                                <input
+                                    type="checkbox"
+                                    id="newsletter"
+                                    checked={formData.newsletter}
+                                    onChange={handleCheckboxChange}
+                                    className="h-4 w-4 rounded border-white/20 bg-white/10 text-[#1d4ed8]"
+                                />
+                                <label htmlFor="newsletter" className="text-sm font-medium">
+                                    Desejo receber a newsletter da ASAPA
+                                </label>
+                            </div>
+                            <Button
+                                type="submit"
+                                disabled={status.submitting}
+                                className="w-full mt-4 bg-white text-[#1d4ed8] hover:bg-white/90"
+                            >
+                                {status.submitting ? 'Enviando...' : 'Enviar Mensagem'}
+                            </Button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -1,22 +1,13 @@
 import Image from "next/image"
 import {DesktopNav, MobileMenu} from "@/components/navigation"
 import {navLinks} from "@/mocks/navigation"
-import {
-    Associese,
-    Contato,
-    Diretoria,
-    Doacao,
-    Eventos,
-    Footer,
-    Hero,
-    MissaoVisaoValores,
-    QuemSomos,
-    Transparencia
-} from "@/components/sections"
+import {SpeedInsights} from "@vercel/speed-insights/next"
+import {Contato, Footer} from "@/components/sections"
 
 export default function Home() {
   return (
       <div className="flex flex-col min-h-screen">
+          <SpeedInsights/>
           <header
               className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
               <div className="container flex h-16 items-center justify-between">
@@ -29,14 +20,14 @@ export default function Home() {
               </div>
           </header>
           <main className="flex-1">
-              <Hero/>
-              <QuemSomos/>
-              <MissaoVisaoValores/>
-              <Diretoria/>
-              <Eventos/>
-              <Associese/>
-              <Doacao/>
-              <Transparencia/>
+              {/*<Hero/>*/}
+              {/*<QuemSomos/>*/}
+              {/*<MissaoVisaoValores/>*/}
+              {/*<Diretoria/>*/}
+              {/*<Eventos/>*/}
+              {/*<Associese/>*/}
+              {/*<Doacao/>*/}
+              {/*<Transparencia/>*/}
               {/*<Noticias/>*/}
               <Contato/>
       </main>
