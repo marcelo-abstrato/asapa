@@ -26,15 +26,6 @@ export const navLinks = [
         // ],
     },
     {
-        href: "#associe-se",
-        label: "Associe-se",
-        // submenu: [
-        //     {href: "#beneficios", label: "Benefícios"},
-        //     {href: "#planos", label: "Planos"},
-        //     {href: "#faq-associados", label: "FAQ"},
-        // ],
-    },
-    {
         href: "#doacao",
         label: "Doação",
     },
@@ -54,5 +45,14 @@ export const navLinks = [
     {
         href: "#contato",
         label: "Contato",
+    },
+    {
+        href: "#associe-se",
+        label: "Associe-se",
+        // submenu: [
+        //     {href: "#beneficios", label: "Benefícios"},
+        //     {href: "#planos", label: "Planos"},
+        //     {href: "#faq-associados", label: "FAQ"},
+        // ],
     },
 ];

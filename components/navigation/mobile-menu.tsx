@@ -63,7 +63,12 @@ export default function MobileMenu({links}: MobileMenuProps) {
                                     ) : (
                                         <Link
                                             href={link.href}
-                                            className="text-sm font-medium hover:text-[#1d4ed8] transition-colors px-2 py-1"
+                                            className={`
+                                                ${link.label === "Associe-se"
+                                                ? "bg-[#1d4ed8] text-white px-4 py-2 rounded-full font-bold hover:bg-blue-700 transition-colors inline-block"
+                                                : "text-sm font-medium hover:text-[#1d4ed8] transition-colors px-2 py-1"
+                                            }
+                                            `}
                                             onClick={closeMenu}
                                         >
                                             {link.label}

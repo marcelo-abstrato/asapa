@@ -7,7 +7,6 @@ interface RegistrationFormData {
     email: string;
     phone: string;
     experience: string;
-    membership: string;
     terms: boolean;
 }
 
@@ -16,7 +15,7 @@ export async function POST(request: Request) {
         const data: RegistrationFormData = await request.json();
 
         // Validate required fields
-        if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.experience || !data.membership) {
+        if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.experience) {
             return NextResponse.json(
                 {error: 'Todos os campos são obrigatórios'},
                 {status: 400}
@@ -45,7 +44,6 @@ export async function POST(request: Request) {
         <p><strong>Email:</strong> ${data.email}</p>
         <p><strong>Telefone:</strong> ${data.phone}</p>
         <p><strong>Experiência com Surf:</strong> ${data.experience}</p>
-        <p><strong>Tipo de Associação:</strong> ${data.membership}</p>
         <p><strong>Aceitou os Termos:</strong> ${data.terms ? 'Sim' : 'Não'}</p>
       `,
         };
@@ -64,7 +62,6 @@ export async function POST(request: Request) {
         <p>Detalhes da sua inscrição:</p>
         <ul>
           <li><strong>Nome:</strong> ${data.firstName} ${data.lastName}</li>
-          <li><strong>Tipo de Associação:</strong> ${data.membership}</li>
         </ul>
         <p>Atenciosamente,</p>
         <p>Equipe ASAPA</p>

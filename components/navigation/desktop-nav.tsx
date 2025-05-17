@@ -19,7 +19,7 @@ export default function DesktopNav({links}: DesktopNavProps) {
     const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 
     return (
-        <nav className="hidden md:flex gap-4 lg:gap-6">
+        <nav className="hidden md:flex gap-4 lg:gap-6 items-center">
             {links.map((link, index) => (
                 <div
                     key={index}
@@ -29,10 +29,15 @@ export default function DesktopNav({links}: DesktopNavProps) {
                 >
                     <Link
                         href={link.href}
-                        className={`text-sm font-medium hover:text-[#1d4ed8] transition-colors flex items-center ${hoveredItem === link.label ? "text-[#1d4ed8]" : ""}`}
+                        className={`
+                            ${link.label === "Associe-se"
+                            ? "bg-[#1d4ed8] text-white px-4 py-2 rounded-full font-bold hover:bg-blue-700 transition-colors"
+                            : `text-sm font-medium hover:text-[#1d4ed8] transition-colors flex items-center ${hoveredItem === link.label ? "text-[#1d4ed8]" : ""}`
+                        }
+                        `}
                     >
                         {link.label}
-                        {link.submenu && <ChevronDown className="ml-1 h-4 w-4"/>}
+                        {link.submenu && link.label !== "Associe-se" && <ChevronDown className="ml-1 h-4 w-4"/>}
                     </Link>
 
                     {link.submenu && hoveredItem === link.label && (

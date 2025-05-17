@@ -1,9 +1,93 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
-import {Facebook, Instagram} from "lucide-react"
-import WaveDivider from "@/components/wave-divider";
+import {Facebook, Instagram, X} from "lucide-react"
+import WaveDivider from "@/components/wave-divider"
+import {useEffect, useState} from "react"
+import {Button} from "@/components/ui/button"
 
 export function Footer() {
+    const [email, setEmail] = useState("")
+    const [status, setStatus] = useState({
+        submitting: false,
+        submitted: false,
+        success: false,
+        error: ""
+    })
+    const [showThankYouPopup, setShowThankYouPopup] = useState(false)
+
+    // Auto-close popup after 5 seconds
+    useEffect(() => {
+        if (showThankYouPopup) {
+            const timer = setTimeout(() => {
+                setShowThankYouPopup(false)
+            }, 5000)
+
+            return () => clearTimeout(timer)
+        }
+    }, [showThankYouPopup])
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value)
+    }
+
+    const closeThankYouPopup = () => {
+        setShowThankYouPopup(false)
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        if (!email) {
+            setStatus({
+                submitting: false,
+                submitted: true,
+                success: false,
+                error: "Por favor, informe seu e-mail."
+            })
+            return
+        }
+
+        setStatus({...status, submitting: true})
+
+        try {
+            const response = await fetch('/api/newsletter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({email}),
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Ocorreu um erro ao processar sua inscrição')
+            }
+
+            setStatus({
+                submitting: false,
+                submitted: true,
+                success: true,
+                error: ""
+            })
+
+            // Show thank you popup
+            setShowThankYouPopup(true)
+
+            // Reset form
+            setEmail("")
+        } catch (error) {
+            setStatus({
+                submitting: false,
+                submitted: true,
+                success: false,
+                error: error instanceof Error ? error.message : 'Ocorreu um erro ao processar sua inscrição'
+            })
+        }
+    }
+
     return (
         <footer className="w-full bg-[#1e40af] text-white relative">
             <WaveDivider className="text-[#1d4ed8] transform rotate-180"/>
@@ -145,17 +229,24 @@ export function Footer() {
                         <p className="text-blue-100 mb-4">
                             Receba novidades sobre eventos, projetos e oportunidades.
                         </p>
-                        <div className="flex flex-col gap-2">
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+                            {status.submitted && status.error ? (
+                                <div className="text-red-300 text-sm mb-2">{status.error}</div>
+                            ) : null}
                             <input
                                 type="email"
+                                value={email}
+                                onChange={handleEmailChange}
                                 placeholder="Seu e-mail"
                                 className="px-3 py-2 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
                             />
                             <button
+                                type="submit"
+                                disabled={status.submitting}
                                 className="px-4 py-2 rounded-md bg-white text-[#1d4ed8] font-medium hover:bg-white/90 transition-colors">
-                                Inscrever-se
+                                {status.submitting ? 'Enviando...' : 'Inscrever-se'}
                             </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -165,6 +256,53 @@ export function Footer() {
                         reservados.</p>
                 </div>
             </div>
+
+            {/* Thank You Popup */}
+            {showThankYouPopup && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 ease-in-out">
+                    <div
+                        className="bg-white text-[#1d4ed8] p-6 rounded-lg shadow-lg max-w-md w-full relative animate-fade-in">
+                        <button
+                            onClick={closeThankYouPopup}
+                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                            aria-label="Fechar"
+                        >
+                            <X className="h-5 w-5"/>
+                        </button>
+                        <div className="text-center">
+                            <div
+                                className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="text-[#1d4ed8]"
+                                >
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">Obrigado por se inscrever!</h3>
+                            <p className="mb-4 text-gray-600">
+                                Você agora receberá atualizações sobre eventos, projetos e oportunidades da ASAPA.
+                            </p>
+                            <Button
+                                onClick={closeThankYouPopup}
+                                className="bg-[#1d4ed8] text-white hover:bg-[#1e40af]"
+                            >
+                                Fechar
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </footer>
     )
 }

@@ -2,9 +2,9 @@
 
 import Image from "next/image"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card"
-import {ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Users} from "lucide-react"
+import {ChevronLeft, ChevronRight, Users} from "lucide-react"
 import {diretoriaMembers} from "@/mocks/diretoria"
-import {useEffect, useState} from "react"
+import {useCallback, useEffect, useState} from "react"
 import {AnimatePresence, motion} from "framer-motion"
 
 interface DiretoriaMember {
@@ -16,18 +16,50 @@ interface DiretoriaMember {
 
 export function Diretoria() {
     const [currentPage, setCurrentPage] = useState(0);
-    const [expandedBios, setExpandedBios] = useState<Record<number, boolean>>({});
-    const itemsPerPage = 6;
+    // Get carousel timer from environment variable or use default (5000ms)
+    const carouselTimer = process.env.NEXT_PUBLIC_CAROUSEL_TIMER ? parseInt(process.env.NEXT_PUBLIC_CAROUSEL_TIMER) : 5000;
+
+    // Determine items per page based on screen size
+    const getItemsPerPage = () => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 640 ? 1 : 6;
+        }
+        return 6;
+    };
+
+    const [itemsPerPage, setItemsPerPage] = useState(6);
     const totalPages = Math.ceil(diretoriaMembers.length / itemsPerPage);
 
-    // Auto-advance carousel every 5 seconds
+    // Update items per page on window resize
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
-        }, 5000);
+        const handleResize = () => {
+            setItemsPerPage(getItemsPerPage());
+        };
 
-        return () => clearInterval(interval);
+        // Set initial value
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Debounced page change function
+    const debouncedPageChange = useCallback(() => {
+        let timer: NodeJS.Timeout;
+        return () => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
+            }, 300); // 300ms debounce
+        };
     }, [totalPages]);
+
+    // Auto-advance carousel with debounce
+    useEffect(() => {
+        const pageChanger = debouncedPageChange();
+        const interval = setInterval(pageChanger, carouselTimer);
+        return () => clearInterval(interval);
+    }, [debouncedPageChange, carouselTimer, totalPages]);
 
     const handlePrevPage = () => {
         setCurrentPage((prevPage) => (prevPage - 1 + totalPages) % totalPages);
@@ -35,13 +67,6 @@ export function Diretoria() {
 
     const handleNextPage = () => {
         setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
-    };
-
-    const toggleBio = (index: number) => {
-        setExpandedBios(prev => ({
-            ...prev,
-            [index]: !prev[index]
-        }));
     };
 
     // Get current page items
@@ -79,11 +104,10 @@ export function Diretoria() {
                         >
                             {currentItems.map((member, index) => {
                                 const globalIndex = currentPage * itemsPerPage + index;
-                                const isExpanded = expandedBios[globalIndex] || false;
 
                                 return (
-                                    <Card key={index} className="overflow-hidden flex flex-col h-[450px]">
-                                        <div className="h-48 bg-gray-200 relative">
+                                    <Card key={index} className="overflow-hidden flex flex-col h-[450px] min-h-[450px]">
+                                        <div className="h-60 bg-gray-200 relative">
                                             <Image
                                                 src={member.imageUrl}
                                                 alt={member.name}
@@ -97,26 +121,9 @@ export function Diretoria() {
                                                 className="text-[#1d4ed8] font-medium">{member.role}</CardDescription>
                                         </CardHeader>
                                         <CardContent className="flex-grow overflow-hidden relative">
-                                            <div
-                                                className={`${isExpanded ? 'h-auto' : 'h-[80px] overflow-hidden'} transition-all duration-300`}>
-                                                <p>{member.bio}</p>
-                                            </div>
-                                            <button
-                                                onClick={() => toggleBio(globalIndex)}
-                                                className="mt-2 flex items-center text-[#1d4ed8] hover:text-blue-700 transition-colors"
-                                            >
-                                                {isExpanded ? (
-                                                    <>
-                                                        <span className="mr-1">Mostrar menos</span>
-                                                        <ChevronUp size={16}/>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <span className="mr-1">Mostrar mais</span>
-                                                        <ChevronDown size={16}/>
-                                                    </>
-                                                )}
-                                            </button>
+                                            <p className="text-sm text-gray-600 line-clamp-3">
+                                                {member.bio}
+                                            </p>
                                         </CardContent>
                                     </Card>
                                 );

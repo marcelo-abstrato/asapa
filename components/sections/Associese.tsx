@@ -11,7 +11,6 @@ export function Associese() {
         email: "",
         phone: "",
         experience: "",
-        membership: "",
         terms: false
     });
 
@@ -52,7 +51,7 @@ export function Associese() {
         e.preventDefault();
 
         // Validate form
-        if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.experience || !formData.membership || !formData.terms) {
+        if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.experience || !formData.terms) {
             setStatus({
                 submitting: false,
                 submitted: true,
@@ -96,7 +95,6 @@ export function Associese() {
                 email: "",
                 phone: "",
                 experience: "",
-                membership: "",
                 terms: false
             });
 
@@ -341,33 +339,6 @@ export function Associese() {
                                     </select>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label htmlFor="membership" className="text-sm font-medium">
-                                        Tipo de Associação
-                                    </label>
-                                    <select
-                                        id="membership"
-                                        value={formData.membership}
-                                        onChange={handleChange}
-                                        className="flex h-10 w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
-                                    >
-                                        <option value="" className="bg-cyan-600">
-                                            Selecione o tipo
-                                        </option>
-                                        <option value="standard" className="bg-cyan-600">
-                                            Padrão (R$ 50/mês)
-                                        </option>
-                                        <option value="family" className="bg-cyan-600">
-                                            Família (R$ 80/mês)
-                                        </option>
-                                        <option value="student" className="bg-cyan-600">
-                                            Estudante (R$ 30/mês)
-                                        </option>
-                                        <option value="professional" className="bg-cyan-600">
-                                            Profissional (R$ 100/mês)
-                                        </option>
-                                    </select>
-                                </div>
 
                                 <div className="flex items-center space-x-2">
                                     <input
@@ -399,8 +370,10 @@ export function Associese() {
 
             {/* Thank You Popup */}
             {showThankYouPopup && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white text-[#1d4ed8] p-6 rounded-lg shadow-lg max-w-md w-full relative">
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 ease-in-out">
+                    <div
+                        className="bg-white text-[#1d4ed8] p-6 rounded-lg shadow-lg max-w-md w-full relative animate-fade-in">
                         <button
                             onClick={closeThankYouPopup}
                             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
@@ -409,8 +382,27 @@ export function Associese() {
                             <X className="h-5 w-5"/>
                         </button>
                         <div className="text-center">
+                            <div
+                                className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="text-[#1d4ed8]"
+                                >
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                            </div>
                             <h3 className="text-xl font-bold mb-2">Obrigado pela sua inscrição!</h3>
-                            <p className="mb-4">Recebemos sua inscrição e dentro de alguns instantes uma pessoa entrará
+                            <p className="mb-4 text-gray-600">Recebemos sua inscrição e dentro de alguns instantes uma
+                                pessoa entrará
                                 em contato para finalizar o processo.</p>
                             <Button
                                 onClick={closeThankYouPopup}

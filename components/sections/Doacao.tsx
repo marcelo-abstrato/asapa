@@ -1,5 +1,4 @@
 import {Button} from "@/components/ui/button"
-import {ChevronRight} from "lucide-react"
 
 export function Doacao() {
     return (
@@ -130,15 +129,25 @@ export function Doacao() {
                                     disponíveis na seção de
                                     Transparência.
                                 </p>
-                                <Button variant="link" className="text-[#1d4ed8] p-0 h-auto mt-2">
-                                    Ver relatórios de doações
-                                    <ChevronRight className="ml-1 h-4 w-4"/>
-                                </Button>
+                                {/*Todo: Link para relatórios financeiros*/}
+                                {/*<Button variant="link" className="text-[#1d4ed8] p-0 h-auto mt-2">*/}
+                                {/*    Ver relatórios de doações*/}
+                                {/*    <ChevronRight className="ml-1 h-4 w-4"/>*/}
+                                {/*</Button>*/}
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg shadow-sm border">
+                    <div className="bg-white p-6 rounded-lg shadow-sm border relative">
+                        {/* Banner "Em Breve" */}
+                        <div
+                            className="absolute inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center rounded-lg z-10">
+                            <div className="text-white text-center">
+                                <h4 className="text-2xl font-bold mb-2">EM BREVE</h4>
+                                <p>Esta funcionalidade estará disponível em breve.</p>
+                            </div>
+                        </div>
+
                         <h3 className="text-xl font-bold mb-4">Faça sua contribuição</h3>
 
                         <div className="space-y-4">
