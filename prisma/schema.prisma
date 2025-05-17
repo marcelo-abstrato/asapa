@@ -13,7 +13,8 @@ datasource db {
 model Event {
   id          String   @id @default(cuid())
   title       String
-  date        String
+  startDate DateTime
+  endDate   DateTime
   location    String
   description String
   image       String

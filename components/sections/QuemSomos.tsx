@@ -23,35 +23,32 @@ export function QuemSomos() {
                     <div className="space-y-5">
                         <h3 className="text-2xl font-bold text-[#1d4ed8]">Nossa Jornada</h3>
                         <p className="text-gray-600">
-                            Fundada em 2005 por um grupo de surfistas apaixonados, a ASAPA nasceu da necessidade
-                            de organizar e
-                            fortalecer a comunidade do surf na Praia das Areias. O que começou como um pequeno
-                            grupo de amigos
-                            transformou-se em uma associação reconhecida nacionalmente.
+                            Fundada em 6 de novembro de 2011, a ASAPA nasceu do espírito de união entre surfistas locais
+                            e entusiastas do mar da Praia das Areias. Nosso objetivo sempre foi promover o surf como
+                            esporte,
+                            estilo de vida e ferramenta de transformação social.
                         </p>
                         <p className="text-gray-600">
-                            Ao longo dos anos, expandimos nossa atuação para além do esporte, abraçando causas
-                            ambientais, sociais
-                            e educacionais. Hoje, somos uma referência no desenvolvimento do surf e na preservação
-                            do ecossistema
-                            costeiro.
+                            Desde nossa fundação, organizamos campeonatos, treinamentos, encontros e ações comunitárias,
+                            tornando-nos referência no incentivo ao surf amador e profissional na região. Realizamos
+                            assembleias e reuniões regulares para prestação de contas e planejamento de ações,
+                            mantendo uma gestão transparente e participativa.
                         </p>
                         <p className="text-gray-600">
-                            Nossa associação reúne surfistas de todas as idades e níveis, desde iniciantes até
-                            profissionais,
-                            unidos pelo amor ao mar e pelo compromisso com a sustentabilidade e o desenvolvimento
-                            da comunidade
-                            local.
+                            Ao longo dos anos, a ASAPA já passou por três gestões distintas, sempre com líderes
+                            comprometidos com a causa do surf e com o bem-estar da comunidade. Com eventos tradicionais
+                            como o Areeiros Classic e os treinos de surf, nos consolidamos como pilar na formação
+                            de novos talentos e na valorização do esporte na cidade.
                         </p>
                         <div className="pt-2">
-                            <Button className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
-                                Conheça Nossa História Completa
+                            <Button className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white" asChild>
+                                <a href="/historia">Conheça Nossa História Completa</a>
                             </Button>
                         </div>
                     </div>
                     <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">
                         <Image
-                            src="/placeholder.svg?height=400&width=600&text=Fundadores+da+ASAPA"
+                            src="/images/diretoria.jpeg?height=400&width=600&text=Fundadores+da+ASAPA"
                             alt="Fundadores da ASAPA"
                             fill
                             className="object-cover"

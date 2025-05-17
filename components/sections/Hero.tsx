@@ -1,6 +1,5 @@
 import Image from "next/image"
 import {Button} from "@/components/ui/button"
-import {ArrowRight} from "lucide-react"
 
 export function Hero() {
     return (
@@ -12,23 +11,21 @@ export function Hero() {
                             Bem-vindo à ASAPA
                         </h1>
                         <p className="max-w-[600px] text-white md:text-xl">
-                            Associação dos Surfistas e Amigos da Praia das Areias, promovendo o surf como esporte,
-                            estilo de vida
-                            e conexão com a natureza desde 2005.
+                            Associação dos Surfistas e Amigos da Praia das Areias, fundada em 6 de novembro de 2011.
+                            Promovemos o surf como esporte, estilo de vida e ferramenta de transformação social,
+                            incentivando a prática esportiva, o respeito ao meio ambiente e o fortalecimento da cultura
+                            praiana local.
                         </p>
                         <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                            <Button className="bg-white text-[#1d4ed8] hover:bg-gray-100">Associe-se</Button>
-                            <Button variant="outline" className="text-white border-white hover:bg-white/20">
-                                Conheça Nossos Projetos
-                                <ArrowRight className="ml-2 h-4 w-4"/>
-                            </Button>
+                            <Button
+                                className="bg-white text-[#1d4ed8] hover:bg-gray-100 font-bold text-lg px-6 py-5 transition-all hover:scale-105 shadow-lg">Associe-se</Button>
                         </div>
                     </div>
                     <div
-                        className="mx-auto w-full max-w-[500px] aspect-video relative rounded-xl overflow-hidden shadow-xl">
+                        className="mx-auto w-full max-w-[500px] aspect-video relative rounded-xl overflow-hidden shadow-xl hidden md:block">
                         <Image
-                            src="/placeholder.svg?height=500&width=800"
-                            alt="Surfista em ação"
+                            src="/images/foto-capa.jpeg?height=500&width=800"
+                            alt="Equipe"
                             fill
                             className="object-cover"
                             priority

@@ -3,7 +3,7 @@ export const navLinks = [
         href: "#quem-somos",
         label: "Quem Somos",
         submenu: [
-            {href: "#historia", label: "Nossa História"},
+            {href: "/historia", label: "Nossa História"},
             {href: "#missao-visao-valores", label: "Missão, Visão e Valores"},
         ],
     },
@@ -17,7 +17,7 @@ export const navLinks = [
         // ],
     },
     {
-        href: "/eventos",
+        href: "#eventos",
         label: "Eventos",
         // submenu: [
         //     {href: "#eventos-futuros", label: "Eventos Futuros"},

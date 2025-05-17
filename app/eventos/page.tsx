@@ -12,22 +12,51 @@ export const metadata = {
     description: "Confira todos os eventos da Associação de Surf",
 }
 
+// Helper function to format date
+function formatDate(startDate: Date, endDate: Date) {
+  const startDay = startDate.getDate();
+  const endDay = endDate.getDate();
+  const startMonth = startDate.toLocaleString('pt-BR', {month: 'long'});
+  const endMonth = endDate.toLocaleString('pt-BR', {month: 'long'});
+  const startYear = startDate.getFullYear();
+  const endYear = endDate.getFullYear();
+
+  if (startYear !== endYear) {
+    return `${startDay} de ${startMonth}, ${startYear} - ${endDay} de ${endMonth}, ${endYear}`;
+  } else if (startMonth !== endMonth) {
+    return `${startDay} de ${startMonth} - ${endDay} de ${endMonth}, ${startYear}`;
+  } else if (startDay !== endDay) {
+    return `${startDay}-${endDay} de ${startMonth}, ${startYear}`;
+  } else {
+    return `${startDay} de ${startMonth}, ${startYear}`;
+  }
+}
+
 export default async function EventosPage() {
-    const eventosFuturos = await prisma.event.findMany({
-        where: {
-            isFuture: true
-        }
-    })
+  const now = new Date();
 
-    const eventosPassados = await prisma.event.findMany({
-        where: {
-            isFuture: false
+  // Get all events
+  const allEvents = await prisma.event.findMany({
+    orderBy: {
+      startDate: 'asc'
         }
-    })
+  });
 
+  // Filter events based on current date
+  const eventosFuturos = allEvents.filter(event => new Date(event.endDate) > now);
+  const eventosPassados = allEvents.filter(event => new Date(event.endDate) <= now);
+
+  // Sort events
+  eventosFuturos.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+  eventosPassados.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
+
+  // Combine all events for the "Todos" tab
     const todosEventos = [...eventosFuturos, ...eventosPassados].sort((a, b) => {
-        return a.date.localeCompare(b.date)
-    })
+      return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
+    });
+
+  // Check if there are any events
+  const hasEvents = allEvents.length > 0;
 
     return (
         <div className="flex flex-col min-h-screen">
