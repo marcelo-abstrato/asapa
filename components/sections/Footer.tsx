@@ -1,13 +1,12 @@
 import Link from "next/link"
 import Image from "next/image"
-import {Facebook, Instagram, Twitter} from "lucide-react"
-import WaveDivider from "@/components/wave-divider"
+import {Facebook, Instagram} from "lucide-react"
+import WaveDivider from "@/components/wave-divider";
 
 export function Footer() {
     return (
-        <footer className="w-full bg-[#1d4ed8] text-white relative">
-            <WaveDivider className="text-white transform rotate-180"/>
-
+        <footer className="w-full bg-[#1e40af] text-white relative">
+            <WaveDivider className="text-[#1d4ed8] transform rotate-180"/>
             <div className="container px-4 md:px-6 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="space-y-4">
@@ -27,26 +26,20 @@ export function Footer() {
                         </div>
                         <p className="text-blue-100">
                             Promovendo o surf, preservando o meio ambiente e desenvolvendo nossa comunidade desde
-                            2005.
+                            2011.
                         </p>
                         <div className="flex gap-4">
                             <a
-                                href="#"
+                                href="https://www.instagram.com/asapaoficial/"
                                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                             >
                                 <Instagram className="h-5 w-5"/>
                             </a>
                             <a
-                                href="#"
+                                href="https://www.facebook.com/asapasurf/"
                                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                             >
                                 <Facebook className="h-5 w-5"/>
-                            </a>
-                            <a
-                                href="#"
-                                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                            >
-                                <Twitter className="h-5 w-5"/>
                             </a>
                         </div>
                     </div>
@@ -106,7 +99,7 @@ export function Footer() {
                                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                                     <circle cx="12" cy="10" r="3"/>
                                 </svg>
-                                <span className="text-blue-100">Av. Beira Mar, 1000 - Praia Grande</span>
+                                <span className="text-blue-100">Rua Francisco Vieira, 701 - Florianópolis - SC</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <svg
@@ -124,7 +117,7 @@ export function Footer() {
                                     <path
                                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                                 </svg>
-                                <span className="text-blue-100">(00) 1234-5678</span>
+                                <span className="text-blue-100">(48) 9 9951-2253</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <svg
@@ -142,7 +135,7 @@ export function Footer() {
                                     <rect width="20" height="16" x="2" y="4" rx="2"/>
                                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                                 </svg>
-                                <span className="text-blue-100">contato@associacaosurf.com.br</span>
+                                <span className="text-blue-100">contato@asapa.com.br</span>
                             </li>
                         </ul>
                     </div>

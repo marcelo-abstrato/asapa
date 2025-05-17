@@ -1,5 +1,54 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Project Structure
+
+The project is organized into the following directories:
+
+### `/app`
+
+Contains the Next.js app router pages and layouts.
+
+### `/components`
+
+Contains reusable React components organized by type:
+
+- `/components/navigation`: Navigation components (desktop and mobile)
+- `/components/sections`: Page section components
+- `/components/ui`: Reusable UI components
+- `/components/layout`: Layout components
+- `/components/icons`: Icon components
+
+### `/lib`
+
+Contains utility functions and shared code:
+
+- `/lib/helpers`: Helper functions
+- `/lib/hooks`: React hooks
+
+### `/public`
+
+Contains static assets:
+
+- `/public/images`: Image files
+- `/public/icons`: Icon files
+
+### `/mocks`
+
+Contains mock data for development.
+
+## Import Conventions
+
+The project uses barrel files (index.ts) to simplify imports:
+
+```javascript
+// Import from a barrel file
+import {Button, Card} from "@/components/ui";
+import {MobileMenu, DesktopNav} from "@/components/navigation";
+
+// Import from a specific file
+import {cn} from "@/lib/helpers/css-utils";
+```
+
 ## Getting Started
 
 First, run the development server:

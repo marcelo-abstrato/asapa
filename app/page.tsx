@@ -1,18 +1,18 @@
 import Image from "next/image"
-import MobileMenu from "./mobile-menu"
-import DesktopNav from "./desktop-nav"
+import {DesktopNav, MobileMenu} from "@/components/navigation"
 import {navLinks} from "@/mocks/navigation"
-import {Hero} from "@/components/sections/Hero"
-import {QuemSomos} from "@/components/sections/QuemSomos"
-import {MissaoVisaoValores} from "@/components/sections/MissaoVisaoValores"
-import {Diretoria} from "@/components/sections/Diretoria"
-import {Eventos} from "@/components/sections/Eventos"
-import {Associese} from "@/components/sections/Associese"
-import {Doacao} from "@/components/sections/Doacao"
-import {Transparencia} from "@/components/sections/Transparencia"
-import {Noticias} from "@/components/sections/Noticias"
-import {Contato} from "@/components/sections/Contato"
-import {Footer} from "@/components/sections/Footer"
+import {
+    Associese,
+    Contato,
+    Diretoria,
+    Doacao,
+    Eventos,
+    Footer,
+    Hero,
+    MissaoVisaoValores,
+    QuemSomos,
+    Transparencia
+} from "@/components/sections"
 
 export default function Home() {
   return (
@@ -37,7 +37,7 @@ export default function Home() {
               <Associese/>
               <Doacao/>
               <Transparencia/>
-              <Noticias/>
+              {/*<Noticias/>*/}
               <Contato/>
       </main>
           <Footer/>
