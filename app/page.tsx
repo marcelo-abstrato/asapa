@@ -41,7 +41,6 @@ export default function Home() {
               {/*<Noticias/>*/}
               <Contato/>
       </main>
-          {/*Todo integracao do newsletter*/}
           <Footer/>
     </div>
   )
