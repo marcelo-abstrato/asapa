@@ -13,25 +13,6 @@ export const metadata = {
     description: "Confira todos os eventos da Associação de Surf",
 }
 
-// Helper function to format date
-function formatDate(startDate: Date, endDate: Date) {
-  const startDay = startDate.getDate();
-  const endDay = endDate.getDate();
-  const startMonth = startDate.toLocaleString('pt-BR', {month: 'long'});
-  const endMonth = endDate.toLocaleString('pt-BR', {month: 'long'});
-  const startYear = startDate.getFullYear();
-  const endYear = endDate.getFullYear();
-
-  if (startYear !== endYear) {
-    return `${startDay} de ${startMonth}, ${startYear} - ${endDay} de ${endMonth}, ${endYear}`;
-  } else if (startMonth !== endMonth) {
-    return `${startDay} de ${startMonth} - ${endDay} de ${endMonth}, ${startYear}`;
-  } else if (startDay !== endDay) {
-    return `${startDay}-${endDay} de ${startMonth}, ${startYear}`;
-  } else {
-    return `${startDay} de ${startMonth}, ${startYear}`;
-  }
-}
 
 export default async function EventosPage() {
   const now = new Date();
@@ -61,7 +42,7 @@ export default async function EventosPage() {
         <div className="flex flex-col min-h-screen">
             <header
                 className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <div className="container flex h-16 items-center justify-between">
+                <div className="container flex h-20 md:h-16 items-center justify-between">
                     <div className="flex items-center gap-2 font-bold text-xl text-[#1d4ed8]">
                         <Link href="/">
                             <Image src="/images/logo-asapa.png" alt="ASAPA Logo" width={40} height={40}

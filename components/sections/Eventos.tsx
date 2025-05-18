@@ -6,43 +6,6 @@ import {NoEventsPanel} from "@/components/ui/NoEventsPanel"
 import {EventCard} from "@/components/ui/EventCard"
 import prisma from "@/lib/prisma"
 
-// Helper function to format date
-function formatDate(startDate: Date, endDate: Date) {
-    const startDay = startDate.getDate();
-    const endDay = endDate.getDate();
-    const startMonth = startDate.toLocaleString('pt-BR', {month: 'long'});
-    const endMonth = endDate.toLocaleString('pt-BR', {month: 'long'});
-    const startYear = startDate.getFullYear();
-    const endYear = endDate.getFullYear();
-
-    if (startYear !== endYear) {
-        return `${startDay} de ${startMonth}, ${startYear} - ${endDay} de ${endMonth}, ${endYear}`;
-    } else if (startMonth !== endMonth) {
-        return `${startDay} de ${startMonth} - ${endDay} de ${endMonth}, ${startYear}`;
-    } else if (startDay !== endDay) {
-        return `${startDay}-${endDay} de ${startMonth}, ${startYear}`;
-    } else {
-        return `${startDay} de ${startMonth}, ${startYear}`;
-    }
-}
-
-// Define the Event interface
-interface Event {
-    title: string;
-    startDate: Date;
-    endDate: Date;
-    date?: string; // Optional as it's kept for backward compatibility
-    location: string;
-    description: string;
-    image: string;
-}
-
-// Helper function to determine if an event is in the future
-function isFutureEvent(event: Event) {
-    const now = new Date();
-    return event.endDate > now;
-}
-
 export async function Eventos() {
     const now = new Date();
 

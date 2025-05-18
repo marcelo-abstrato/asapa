@@ -39,11 +39,11 @@ export default function MobileMenu({links}: MobileMenuProps) {
         <div className="md:hidden">
             <Button variant="ghost" size="icon" className="relative" aria-label="Menu de navegação"
                     onClick={toggleMenu}>
-                <Menu className="h-6 w-6 text-[#1d4ed8]"/>
+                <Menu className="h-7 w-7 md:h-6 md:w-6 text-[#1d4ed8]" strokeWidth={2.5}/>
             </Button>
 
             {isOpen && (
-                <div className="absolute top-16 right-0 left-0 bg-white shadow-md z-50 border-b">
+                <div className="absolute top-20 md:top-16 right-0 left-0 bg-white shadow-md z-50 border-b">
                     <div className="container py-4 flex flex-col space-y-2">
                         {links.map((link, index) => (
                             <div key={index} className="border-b border-gray-100 pb-2">
