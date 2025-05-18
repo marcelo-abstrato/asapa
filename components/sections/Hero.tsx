@@ -13,10 +13,15 @@ export function Hero() {
                             Bem-vindo à ASAPA
                         </h1>
                         <p className="max-w-[600px] text-white md:text-xl">
-                            Associação dos Surfistas e Amigos da Praia das Areias, fundada em 6 de novembro de 2011.
-                            Promovemos o surf como esporte, estilo de vida e ferramenta de transformação social,
+                            A Associação dos Surfistas e Amigos da Praia das Areias é mais que uma entidade esportiva -
+                            somos uma comunidade apaixonada pelo mar e pelo surf desde 2011.
+                            Nascemos da união entre surfistas locais e amantes da praia, transformando vidas através do
+                            esporte.
+                        </p>
+                        <p className="max-w-[600px] text-white md:text-xl">
+                            Promovemos o surf como estilo de vida e ferramenta de transformação social,
                             incentivando a prática esportiva, o respeito ao meio ambiente e o fortalecimento da cultura
-                            praiana local.
+                            praiana local. Junte-se a nós nessa jornada de conexão com o mar e com a comunidade.
                         </p>
                         <div className="flex flex-col gap-2 min-[400px]:flex-row">
                             <Button

@@ -27,11 +27,11 @@ export function NoEventsPanel({type = 'all', showButton = true}: NoEventsPanelPr
             <p className="text-gray-500 mb-4">{description}</p>
             {showButton && type !== 'past' && (
                 <Button
-                    className={type === 'all' ? "bg-[#1d4ed8] hover:bg-[#1e40af]" : "text-[#1d4ed8] border-[#1d4ed8]"}
-                    variant={type === 'all' ? "default" : "outline"}
-                    aria-label={type === 'all' ? 'Seja o primeiro a criar um evento' : 'Verificar mais tarde'}
+                    className="bg-[#1d4ed8] hover:bg-[#1e40af]"
+                    variant="default"
+                    aria-label="Fique atento para novos eventos"
                 >
-                    {type === 'all' ? 'Seja o primeiro a criar um evento' : 'Verificar mais tarde'}
+                    Fique atento para novos eventos
                 </Button>
             )}
         </div>

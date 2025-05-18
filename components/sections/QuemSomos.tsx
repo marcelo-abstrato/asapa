@@ -23,22 +23,31 @@ export function QuemSomos() {
                     <div className="space-y-5">
                         <h3 className="text-2xl font-bold text-[#1d4ed8]">Nossa Jornada</h3>
                         <p className="text-gray-600">
-                            Fundada em 6 de novembro de 2011, a ASAPA nasceu do espírito de união entre surfistas locais
-                            e entusiastas do mar da Praia das Areias. Nosso objetivo sempre foi promover o surf como
-                            esporte,
-                            estilo de vida e ferramenta de transformação social.
+                            Nossa história começou nas ondas da Praia das Areias em 2007, quando realizamos o primeiro
+                            Areias Classic
+                            sob a liderança visionária de Marcelo Manoel Barbosa. Embora o nome ASAPA já ecoasse na
+                            areia e no mar,
+                            foi em 6 de novembro de 2011 que oficialmente nos estabelecemos como uma associação, nascida
+                            da paixão
+                            compartilhada pelo surf e pelo potencial transformador que este esporte carrega.
                         </p>
                         <p className="text-gray-600">
-                            Desde nossa fundação, organizamos campeonatos, treinamentos, encontros e ações comunitárias,
-                            tornando-nos referência no incentivo ao surf amador e profissional na região. Realizamos
-                            assembleias e reuniões regulares para prestação de contas e planejamento de ações,
-                            mantendo uma gestão transparente e participativa.
+                            Ao longo desta jornada, construímos um legado de eventos memoráveis, como o tradicional
+                            Areias Classic
+                            e suas variações Jamaica, implementamos surfs treinos que revelaram talentos locais, e
+                            desenvolvemos
+                            ações comunitárias que fortaleceram os laços entre surfistas, moradores e amantes da praia.
+                            Mesmo durante nosso período de pausa (2019-2023), o espírito da ASAPA permaneceu vivo nas
+                            águas das Areias.
                         </p>
                         <p className="text-gray-600">
-                            Ao longo dos anos, a ASAPA já passou por três gestões distintas, sempre com líderes
-                            comprometidos com a causa do surf e com o bem-estar da comunidade. Com eventos tradicionais
-                            como o Areeiros Classic e os treinos de surf, nos consolidamos como pilar na formação
-                            de novos talentos e na valorização do esporte na cidade.
+                            Cada capítulo de nossa história foi escrito por líderes apaixonados e membros dedicados,
+                            que compartilham a visão de um surf inclusivo, sustentável e transformador. Hoje, em nossa
+                            terceira gestão (2023-2027), renovamos nosso compromisso com a comunidade através de
+                            projetos
+                            inovadores, ações socioambientais e iniciativas que fortalecem a cultura do surf,
+                            consolidando
+                            a ASAPA como um pilar fundamental no desenvolvimento esportivo e social de nossa região.
                         </p>
                         <div className="pt-2">
                             <Button className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white" asChild>

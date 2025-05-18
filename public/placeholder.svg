@@ -1,15 +1,63 @@
 <svg width="100%" height="100%" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
-    <!-- Black background -->
-    <rect width="100%" height="100%" fill="#dbeafe"/>
+    <!-- Background with gradient -->
+    <defs>
+        <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#dbeafe"/>
+            <stop offset="100%" stop-color="#1d4ed8"/>
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#oceanGradient)"/>
 
-    <!-- Camera icon -->
-    <g transform="translate(350, 175)" fill="#000000" opacity="0.5">
-        <path d="M50,0 L70,20 L100,20 A10,10 0 0 1 110,30 L110,80 A10,10 0 0 1 100,90 L0,90 A10,10 0 0 1 -10,80 L-10,30 A10,10 0 0 1 0,20 L30,20 L50,0 Z M50,30 A25,25 0 1 0 50,80 A25,25 0 1 0 50,30 Z"/>
+    <!-- Wave pattern -->
+    <path d="M0,350
+             C100,320 200,380 300,350
+             C400,320 500,380 600,350
+             C700,320 800,380 900,350
+             L900,450 L0,450 Z"
+          fill="#1e40af" opacity="0.7"/>
+
+    <path d="M0,370
+             C100,340 200,400 300,370
+             C400,340 500,400 600,370
+             C700,340 800,400 900,370
+             L900,450 L0,450 Z"
+          fill="#ffffff" opacity="0.3"/>
+
+    <!-- Surfboard icon -->
+    <g transform="translate(350, 150)">
+        <!-- Surfboard -->
+        <path d="M0,0 C20,-40 80,-40 100,0 L90,120 C85,140 15,140 10,120 Z"
+              fill="#ffffff" stroke="#1e40af" stroke-width="3"/>
+
+        <!-- Fin -->
+        <path d="M50,100 L50,140 L30,120 Z"
+              fill="#1e40af" stroke="#1e40af" stroke-width="1"/>
+
+        <!-- Stringer -->
+        <line x1="50" y1="0" x2="50" y2="120"
+              stroke="#1e40af" stroke-width="1" stroke-dasharray="5,3"/>
+
+        <!-- Decorative lines -->
+        <path d="M30,20 C40,15 60,15 70,20"
+              fill="none" stroke="#1e40af" stroke-width="1"/>
+        <path d="M25,40 C40,35 60,35 75,40"
+              fill="none" stroke="#1e40af" stroke-width="1"/>
+        <path d="M20,60 C40,55 60,55 80,60"
+              fill="none" stroke="#1e40af" stroke-width="1"/>
+    </g>
+
+    <!-- ASAPA Logo/Text -->
+    <g transform="translate(400, 70)">
+        <text x="0" y="0"
+              font-family="'Geist Sans', sans-serif" font-weight="bold" font-size="40" text-anchor="middle"
+              fill="#ffffff">ASAPA
+        </text>
     </g>
 
     <!-- Text placeholder - will be replaced by JavaScript if text parameter is provided -->
-    <text id="placeholderText" x="400" y="300" font-family="Arial, sans-serif" font-size="24" text-anchor="middle"
-          fill="#000000">Imagem não disponível
+    <text id="placeholderText" x="400" y="350"
+          font-family="'Geist Sans', sans-serif" font-size="24" font-weight="500" text-anchor="middle"
+          fill="#ffffff">Imagem não disponível
     </text>
 
     <!-- JavaScript to handle text parameter -->

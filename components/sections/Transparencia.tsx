@@ -25,10 +25,22 @@ export function Transparencia() {
                         <TabsTrigger value="financeiro">
                             <span className="hidden md:inline">Relatórios Financeiros</span>
                             <span className="md:hidden">Financeiro</span>
+                            {relatoriosFinanceiros.length > 0 && (
+                                <span
+                                    className="ml-2 inline-flex items-center justify-center rounded-full bg-[#dbeafe] px-2 py-0.5 text-xs font-medium text-[#1d4ed8]">
+                                    {relatoriosFinanceiros.length}
+                                </span>
+                            )}
                         </TabsTrigger>
                         <TabsTrigger value="atas">
                             <span className="hidden md:inline">Atas de Reuniões</span>
                             <span className="md:hidden">Reunioes</span>
+                            {atasReunioes.length > 0 && (
+                                <span
+                                    className="ml-2 inline-flex items-center justify-center rounded-full bg-[#dbeafe] px-2 py-0.5 text-xs font-medium text-[#1d4ed8]">
+                                    {atasReunioes.length}
+                                </span>
+                            )}
                         </TabsTrigger>
                         <TabsTrigger value="doacoes" disabled>
                             <span className="hidden md:inline">Doações</span>

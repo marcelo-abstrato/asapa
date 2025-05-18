@@ -10,11 +10,6 @@ export const navLinks = [
     {
         href: "/#diretoria",
         label: "Diretoria",
-        // submenu: [
-        //     {href: "#diretoria-atual", label: "Diretoria Atual"},
-        //     {href: "#ex-presidentes", label: "Ex-Presidentes"},
-        //     {href: "#conselho", label: "Conselho Consultivo"},
-        // ],
     },
     {
         href: "/#eventos",
@@ -28,15 +23,6 @@ export const navLinks = [
         href: "/#transparencia",
         label: "Transparência",
     },
-    // {
-    //     href: "#noticias",
-    //     label: "Notícias",
-    //     submenu: [
-    //         {href: "#ultimas-noticias", label: "Últimas Notícias"},
-    //         {href: "#blog", label: "Blog"},
-    //         {href: "#midia", label: "ASAPA na Mídia"},
-    //     ],
-    // },
     {
         href: "/#contato",
         label: "Contato",

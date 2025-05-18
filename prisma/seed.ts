@@ -32,10 +32,37 @@ async function main() {
 
     const pastEvents: EventData[] = [
         {
+            title: "Areias Classic - 3ª edição",
+            startDate: "2024-12-14T00:00:00Z",
+            endDate: "2024-12-14T00:00:00Z",
+            location: "Areias do Campeche - Florianópolis/SC",
+            description: "O Retorno apos 26 anos edição do Areias Classic.",
+            image: "/imagens/eventos/areias_classic_2.jpg",
+            date: "17 de September, 2008"
+        },
+        {
+            title: "Pós Tainha",
+            startDate: "2024-07-27T00:00:00Z",
+            endDate: "2024-07-27T00:00:00Z",
+            location: "Praça das Areias - Florianópolis/SC",
+            description: "Praia das Areias - Florianópolis/SC",
+            image: "/placeholder.svg",
+            date: "12 de Outubro, 2023"
+        },
+        {
+            title: "Dia das Crianças - 2023",
+            startDate: "2023-10-12T00:00:00Z",
+            endDate: "2023-10-12T00:00:00Z",
+            location: "Praça das Areias - Florianópolis/SC",
+            description: "",
+            image: "/imagens/eventos/dia_das_criancas_23.png",
+            date: "12 de Outubro, 2023"
+        },
+        {
             title: "Pós Tainha",
             startDate: "2023-07-30T00:00:00Z",
             endDate: "2023-07-30T00:00:00Z",
-            location: "Praia das Areias",
+            location: "Praia das Areias - Florianópolis/SC",
             description: "Evento de integração pós treino.",
             image: "/imagens/eventos/pos_tainha.jpeg",
             date: "30 de Julho, 2023",

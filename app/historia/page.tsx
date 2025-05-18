@@ -43,7 +43,7 @@ export default function HistoriaPage() {
 
                             {/* Timeline items */}
                             <div className="space-y-16">
-                                {/* Founding */}
+                                {/* Primeiros Eventos */}
                                 <div className="relative">
                                     <div className="absolute left-1/2 transform -translate-x-1/2 -mt-3">
                                         <div
@@ -52,14 +52,71 @@ export default function HistoriaPage() {
                                     <div className="flex flex-col md:flex-row items-center">
                                         <div className="md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
                                             <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Fundação</h3>
+                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Primeiros
+                                                    Eventos</h3>
+                                                <p className="text-gray-600 mb-1">11 de novembro de 2007</p>
+                                                <p className="text-gray-700">
+                                                    Marcelo Manoel Barbosa realiza o primeiro Areias Classic, trazendo
+                                                    sua experiência
+                                                    da ASMP (Associação de Surf do Morro das Pedras), onde foi
+                                                    presidente.
+                                                    Neste período, o nome ASAPA já era utilizado informalmente, embora a
+                                                    associação
+                                                    ainda não estivesse oficialmente registrada.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="md:w-1/2 md:pl-8"></div>
+                                    </div>
+                                </div>
+
+                                {/* Fundação */}
+                                <div className="relative">
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 -mt-3">
+                                        <div
+                                            className="h-6 w-6 rounded-full bg-[#1d4ed8] border-4 border-white shadow"></div>
+                                    </div>
+                                    <div className="flex flex-col md:flex-row items-center">
+                                        <div className="md:w-1/2 md:pr-8"></div>
+                                        <div className="md:w-1/2 md:pl-8 md:text-left mb-4 md:mb-0">
+                                            <div className="bg-blue-50 p-6 rounded-lg shadow-md">
+                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Fundação
+                                                    Oficial</h3>
                                                 <p className="text-gray-600 mb-1">6 de novembro de 2011</p>
                                                 <p className="text-gray-700">
-                                                    A ASAPA foi fundada por um grupo de surfistas locais e entusiastas
-                                                    do mar da
-                                                    Praia das Areias,
-                                                    unidos pelo amor ao surf e pela vontade de fortalecer a comunidade
-                                                    local.
+                                                    A ASAPA é oficialmente fundada por Marcelo Manoel Barbosa,
+                                                    consolidando
+                                                    o trabalho que já vinha sendo realizado na comunidade. A associação
+                                                    nasce
+                                                    com o propósito de promover o surf como esporte, estilo de vida e
+                                                    ferramenta
+                                                    de transformação social na Praia das Areias.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Primeira Gestão */}
+                                <div className="relative">
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 -mt-3">
+                                        <div
+                                            className="h-6 w-6 rounded-full bg-[#1d4ed8] border-4 border-white shadow"></div>
+                                    </div>
+                                    <div className="flex flex-col md:flex-row items-center">
+                                        <div className="md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
+                                            <div className="bg-blue-50 p-6 rounded-lg shadow-md">
+                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Primeira
+                                                    Gestão</h3>
+                                                <p className="text-gray-600 mb-1">06 de novembro de 2011 a 11 de
+                                                    dezembro de 2015</p>
+                                                <p className="text-gray-700">
+                                                    Sob a presidência de Marcelo Manoel Barbosa, este período foi
+                                                    marcado pela
+                                                    organização inicial da associação, formação dos primeiros membros,
+                                                    estruturação
+                                                    administrativa e realização de eventos importantes para a comunidade
+                                                    surfista local.
                                                 </p>
                                             </div>
                                         </div>
@@ -67,7 +124,7 @@ export default function HistoriaPage() {
                                     </div>
                                 </div>
 
-                                {/* Mission */}
+                                {/* Segunda Gestão */}
                                 <div className="relative">
                                     <div className="absolute left-1/2 transform -translate-x-1/2 -mt-3">
                                         <div
@@ -77,23 +134,25 @@ export default function HistoriaPage() {
                                         <div className="md:w-1/2 md:pr-8"></div>
                                         <div className="md:w-1/2 md:pl-8 md:text-left mb-4 md:mb-0">
                                             <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Missão e
-                                                    Objetivos</h3>
+                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Segunda
+                                                    Gestão</h3>
+                                                <p className="text-gray-600 mb-1">11 de dezembro de 2015 a 11 de
+                                                    dezembro de 2019</p>
                                                 <p className="text-gray-700">
-                                                    Desde o início, o objetivo da ASAPA foi promover o surf como
-                                                    esporte, estilo
-                                                    de vida e
-                                                    ferramenta de transformação social, incentivando a prática
-                                                    esportiva, o
-                                                    respeito ao meio
-                                                    ambiente e o fortalecimento da cultura praiana local.
+                                                    Durante a presidência de Bruno Felipe da Rosa de Moura, a ASAPA se
+                                                    destacou pela
+                                                    implementação dos surfs treinos, que se tornaram uma marca
+                                                    registrada da associação.
+                                                    Este período foi fundamental para o desenvolvimento técnico dos
+                                                    surfistas locais e
+                                                    para a formação de novos talentos.
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Activities */}
+                                {/* Período de Hiato */}
                                 <div className="relative">
                                     <div className="absolute left-1/2 transform -translate-x-1/2 -mt-3">
                                         <div
@@ -102,17 +161,18 @@ export default function HistoriaPage() {
                                     <div className="flex flex-col md:flex-row items-center">
                                         <div className="md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
                                             <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Atividades e
-                                                    Eventos</h3>
+                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Período de
+                                                    Hiato</h3>
+                                                <p className="text-gray-600 mb-1">11 de dezembro de 2019 a 26 de maio de
+                                                    2023</p>
                                                 <p className="text-gray-700">
-                                                    A ASAPA organiza campeonatos, treinamentos, encontros e ações
-                                                    comunitárias,
-                                                    tornando-se
-                                                    referência no incentivo ao surf amador e profissional na região.
-                                                    Eventos
-                                                    tradicionais como
-                                                    o Areeiros Classic e os treinos de surf são marcos importantes na
-                                                    comunidade.
+                                                    A ASAPA enfrentou um período de pausa em suas atividades devido a
+                                                    problemas
+                                                    de documentação e, posteriormente, aos desafios impostos pela
+                                                    pandemia de COVID-19.
+                                                    Durante este tempo, a associação não teve presidente oficial, mas
+                                                    manteve sua
+                                                    presença na comunidade através de ações pontuais.
                                                 </p>
                                             </div>
                                         </div>
@@ -120,7 +180,7 @@ export default function HistoriaPage() {
                                     </div>
                                 </div>
 
-                                {/* Management */}
+                                {/* Retomada e Gestão Atual */}
                                 <div className="relative">
                                     <div className="absolute left-1/2 transform -translate-x-1/2 -mt-3">
                                         <div
@@ -130,25 +190,27 @@ export default function HistoriaPage() {
                                         <div className="md:w-1/2 md:pr-8"></div>
                                         <div className="md:w-1/2 md:pl-8 md:text-left mb-4 md:mb-0">
                                             <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Gestão e
-                                                    Transparência</h3>
+                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Retomada e Gestão
+                                                    Atual</h3>
+                                                <p className="text-gray-600 mb-1">26 de maio de 2023 a 26 de junho de
+                                                    2027</p>
                                                 <p className="text-gray-700">
-                                                    A associação realiza assembleias e reuniões regulares para a
-                                                    prestação de
-                                                    contas e
-                                                    planejamento de suas ações, mantendo uma gestão transparente e
-                                                    participativa. Ao longo
-                                                    dos anos, a ASAPA já passou por três gestões distintas, sempre com
-                                                    líderes
-                                                    comprometidos
-                                                    com a causa do surf e com o bem-estar da comunidade.
+                                                    Em 26 de maio de 2023, uma Assembleia Geral Ordinária definiu a nova
+                                                    diretoria,
+                                                    com Marcelo Manoel Barbosa retornando à presidência. Esta nova fase
+                                                    é marcada
+                                                    pela reestruturação da associação, inovação nas atividades e forte
+                                                    ênfase em
+                                                    pautas sociais, reafirmando o compromisso da ASAPA com a comunidade
+                                                    e o
+                                                    desenvolvimento sustentável do surf na região.
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Present */}
+                                {/* Legado e Futuro */}
                                 <div className="relative">
                                     <div className="absolute left-1/2 transform -translate-x-1/2 -mt-3">
                                         <div
@@ -157,17 +219,20 @@ export default function HistoriaPage() {
                                     <div className="flex flex-col md:flex-row items-center">
                                         <div className="md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
                                             <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Atualidade</h3>
+                                                <h3 className="text-xl font-bold text-[#1d4ed8] mb-2">Legado e
+                                                    Futuro</h3>
                                                 <p className="text-gray-700">
-                                                    Hoje, a ASAPA se consolidou como pilar na formação de novos talentos
-                                                    e na
-                                                    valorização do
-                                                    esporte na cidade. Continuamos trabalhando para promover o surf,
-                                                    proteger o
-                                                    meio ambiente
-                                                    e fortalecer nossa comunidade, sempre fiéis aos valores que nos
-                                                    uniram desde
-                                                    o início.
+                                                    Ao longo de sua história, a ASAPA se consolidou como uma instituição
+                                                    fundamental
+                                                    para o desenvolvimento do surf nas Areias do Campeche. Dos primeiros
+                                                    eventos
+                                                    informais até a estrutura atual, a associação mantém vivo o espírito
+                                                    de
+                                                    comunidade e amor pelo mar que a originou. Olhando para o futuro, a
+                                                    ASAPA
+                                                    continua comprometida com a formação de novos talentos, a
+                                                    preservação ambiental
+                                                    e o fortalecimento dos laços comunitários através do esporte.
                                                 </p>
                                             </div>
                                         </div>

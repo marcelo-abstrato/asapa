@@ -25,8 +25,24 @@ export function EventTabs({futureEvents, pastEvents, className = ""}: EventTabsP
     return (
         <Tabs defaultValue="futuros" className={`w-full max-w-4xl mx-auto ${className}`}>
             <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger value="futuros">Eventos Futuros</TabsTrigger>
-                <TabsTrigger value="passados">Eventos Passados</TabsTrigger>
+                <TabsTrigger value="futuros">
+                    Eventos Futuros
+                    {futureEvents.length > 0 && (
+                        <span
+                            className="ml-2 inline-flex items-center justify-center rounded-full bg-[#dbeafe] px-2 py-0.5 text-xs font-medium text-[#1d4ed8]">
+                            {futureEvents.length}
+                        </span>
+                    )}
+                </TabsTrigger>
+                <TabsTrigger value="passados">
+                    Eventos Passados
+                    {pastEvents.length > 0 && (
+                        <span
+                            className="ml-2 inline-flex items-center justify-center rounded-full bg-[#dbeafe] px-2 py-0.5 text-xs font-medium text-[#1d4ed8]">
+                            {pastEvents.length}
+                        </span>
+                    )}
+                </TabsTrigger>
             </TabsList>
 
             <TabsContent value="futuros" className="space-y-6">

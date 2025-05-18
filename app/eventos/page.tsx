@@ -6,6 +6,7 @@ import {DesktopNav, MobileMenu} from "@/components/navigation"
 import {navLinks} from "@/mocks/navigation"
 import {Footer} from "@/components/sections"
 import {EventCard} from "@/components/ui/EventCard"
+import {NoEventsPanel} from "@/components/ui/NoEventsPanel"
 import prisma from "@/lib/prisma"
 
 export const metadata = {
@@ -91,51 +92,81 @@ export default async function EventosPage() {
                                 <TabsTrigger value="todos">
                                     <span className="hidden md:inline">Todos os Eventos</span>
                                     <span className="md:hidden">Todos</span>
+                                    {todosEventos.length > 0 && (
+                                        <span
+                                            className="ml-2 inline-flex items-center justify-center rounded-full bg-[#dbeafe] px-2 py-0.5 text-xs font-medium text-[#1d4ed8]">
+                                            {todosEventos.length}
+                                        </span>
+                                    )}
                                 </TabsTrigger>
                                 <TabsTrigger value="futuros">
                                     <span className="hidden md:inline">Proximos Eventos</span>
                                     <span className="md:hidden">Proximos</span>
+                                    {eventosFuturos.length > 0 && (
+                                        <span
+                                            className="ml-2 inline-flex items-center justify-center rounded-full bg-[#dbeafe] px-2 py-0.5 text-xs font-medium text-[#1d4ed8]">
+                                            {eventosFuturos.length}
+                                        </span>
+                                    )}
                                 </TabsTrigger>
                                 <TabsTrigger value="passados">
                                     <span className="hidden md:inline">Eventos Anteriores</span>
                                     <span className="md:hidden">Anteriores</span>
+                                    {eventosPassados.length > 0 && (
+                                        <span
+                                            className="ml-2 inline-flex items-center justify-center rounded-full bg-[#dbeafe] px-2 py-0.5 text-xs font-medium text-[#1d4ed8]">
+                                            {eventosPassados.length}
+                                        </span>
+                                    )}
                                 </TabsTrigger>
                             </TabsList>
 
                             <TabsContent value="todos" className="space-y-6">
-                                {todosEventos.map((event, index) => {
-                                    const isPastEvent = !eventosFuturos.some(e => e.id === event.id);
-                                    return (
-                                        <EventCard
-                                            key={index}
-                                            event={event}
-                                            isPastEvent={isPastEvent}
-                                            showSubscribe={false}
-                                        />
-                                    );
-                                })}
+                                {todosEventos.length > 0 ? (
+                                    todosEventos.map((event, index) => {
+                                        const isPastEvent = !eventosFuturos.some(e => e.id === event.id);
+                                        return (
+                                            <EventCard
+                                                key={index}
+                                                event={event}
+                                                isPastEvent={isPastEvent}
+                                                showSubscribe={false}
+                                            />
+                                        );
+                                    })
+                                ) : (
+                                    <NoEventsPanel type="all" showButton={false}/>
+                                )}
                             </TabsContent>
 
                             <TabsContent value="futuros" className="space-y-6">
-                                {eventosFuturos.map((event, index) => (
-                                    <EventCard
-                                        key={index}
-                                        event={event}
-                                        isPastEvent={false}
-                                        showSubscribe={false}
-                                    />
-                                ))}
+                                {eventosFuturos.length > 0 ? (
+                                    eventosFuturos.map((event, index) => (
+                                        <EventCard
+                                            key={index}
+                                            event={event}
+                                            isPastEvent={false}
+                                            showSubscribe={false}
+                                        />
+                                    ))
+                                ) : (
+                                    <NoEventsPanel type="future" showButton={false}/>
+                                )}
                             </TabsContent>
 
                             <TabsContent value="passados" className="space-y-6">
-                                {eventosPassados.map((event, index) => (
-                                    <EventCard
-                                        key={index}
-                                        event={event}
-                                        isPastEvent={true}
-                                        showSubscribe={false}
-                                    />
-                                ))}
+                                {eventosPassados.length > 0 ? (
+                                    eventosPassados.map((event, index) => (
+                                        <EventCard
+                                            key={index}
+                                            event={event}
+                                            isPastEvent={true}
+                                            showSubscribe={false}
+                                        />
+                                    ))
+                                ) : (
+                                    <NoEventsPanel type="past" showButton={false}/>
+                                )}
                             </TabsContent>
                         </Tabs>
 
