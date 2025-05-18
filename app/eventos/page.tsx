@@ -20,7 +20,7 @@ export default async function EventosPage() {
   // Get all events
   const allEvents = await prisma.event.findMany({
     orderBy: {
-      startDate: 'asc'
+        startDate: 'desc'
         }
   });
 
@@ -28,14 +28,13 @@ export default async function EventosPage() {
   const eventosFuturos = allEvents.filter(event => new Date(event.endDate) > now);
   const eventosPassados = allEvents.filter(event => new Date(event.endDate) <= now);
 
-  // Sort events
+    // Sort events - maintaining the database sort order (desc)
+    // Future events should be in ascending order for chronological display
   eventosFuturos.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
-  eventosPassados.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
+    // Past events are already in descending order from the database
 
-  // Combine all events for the "Todos" tab
-    const todosEventos = [...eventosFuturos, ...eventosPassados].sort((a, b) => {
-      return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
-    });
+    // Combine all events for the "Todos" tab - future events first, then past events
+    const todosEventos = [...eventosFuturos, ...eventosPassados];
 
 
     return (
@@ -45,7 +44,7 @@ export default async function EventosPage() {
                 <div className="container flex h-20 md:h-16 items-center justify-between">
                     <div className="flex items-center gap-2 font-bold text-xl text-[#1d4ed8]">
                         <Link href="/">
-                            <Image src="/images/logo-asapa.png" alt="ASAPA Logo" width={40} height={40}
+                            <Image src="/imagens/logo-asapa.png" alt="ASAPA Logo" width={40} height={40}
                                    className="rounded-full"/>
                         </Link>
                     </div>
@@ -89,9 +88,18 @@ export default async function EventosPage() {
 
                         <Tabs defaultValue="todos" className="w-full max-w-6xl mx-auto">
                             <TabsList className="grid w-full grid-cols-3 mb-8">
-                                <TabsTrigger value="todos">Todos os Eventos</TabsTrigger>
-                                <TabsTrigger value="futuros">Eventos Futuros</TabsTrigger>
-                                <TabsTrigger value="passados">Eventos Passados</TabsTrigger>
+                                <TabsTrigger value="todos">
+                                    <span className="hidden md:inline">Todos os Eventos</span>
+                                    <span className="md:hidden">Todos</span>
+                                </TabsTrigger>
+                                <TabsTrigger value="futuros">
+                                    <span className="hidden md:inline">Proximos Eventos</span>
+                                    <span className="md:hidden">Proximos</span>
+                                </TabsTrigger>
+                                <TabsTrigger value="passados">
+                                    <span className="hidden md:inline">Eventos Anteriores</span>
+                                    <span className="md:hidden">Anteriores</span>
+                                </TabsTrigger>
                             </TabsList>
 
                             <TabsContent value="todos" className="space-y-6">
@@ -102,7 +110,7 @@ export default async function EventosPage() {
                                             key={index}
                                             event={event}
                                             isPastEvent={isPastEvent}
-                                            showResults={isPastEvent}
+                                            showSubscribe={false}
                                         />
                                     );
                                 })}
@@ -114,7 +122,7 @@ export default async function EventosPage() {
                                         key={index}
                                         event={event}
                                         isPastEvent={false}
-                                        showResults={false}
+                                        showSubscribe={false}
                                     />
                                 ))}
                             </TabsContent>
@@ -125,14 +133,14 @@ export default async function EventosPage() {
                                         key={index}
                                         event={event}
                                         isPastEvent={true}
-                                        showResults={true}
+                                        showSubscribe={false}
                                     />
                                 ))}
                             </TabsContent>
                         </Tabs>
 
                         <div className="flex justify-center mt-10">
-                            <Link href="/">
+                            <Link href="/#eventos">
                                 <Button variant="outline" className="text-[#1d4ed8] border-[#1d4ed8]">
                                     Voltar para a Página Inicial
                                 </Button>

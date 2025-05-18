@@ -25,29 +25,29 @@ async function main() {
             endDate: "2025-10-12T00:00:00Z",
             location: "Areias do Campeche - Florianópolis/SC",
             description: "",
-            image: "/placeholder.svg",
+            image: "/imagens/eventos/dia_das_criancas_25.png",
             date: "12 de Outubro, 2025"
         },
     ];
 
     const pastEvents: EventData[] = [
         {
+            title: "Pós Tainha",
+            startDate: "2023-07-30T00:00:00Z",
+            endDate: "2023-07-30T00:00:00Z",
+            location: "Praia das Areias",
+            description: "Evento de integração pós treino.",
+            image: "/imagens/eventos/pos_tainha.jpeg",
+            date: "30 de Julho, 2023",
+        },
+        {
             title: "3ª Etapa Circuito Adriano de Souza",
             startDate: "2018-09-22T00:00:00Z",
             endDate: "2018-09-23T00:00:00Z",
-            location: "Areias do Campeche - Florianópolis/SC",
+            location: "Morro das Pedras - Florianópolis/SC",
             description: "Etapa do circuito em homenagem a Adriano de Souza.",
-            image: "/placeholder.svg",
+            image: "/imagens/eventos/ads_3.jpeg",
             date: "22 de Setembro, 2018"
-        },
-        {
-            title: "Areias Classic Jamaica - 3ª edição",
-            startDate: "2017-04-29T00:00:00Z",
-            endDate: "2017-04-29T00:00:00Z",
-            location: "Areias do Campeche - Florianópolis/SC",
-            description: "Terceira edição do Areias Classic Jamaica.",
-            image: "./placeholder.svg",
-            date: "29 de Abril, 2017"
         },
         {
             title: "Etapa Local Roots",
@@ -55,7 +55,7 @@ async function main() {
             endDate: "2018-08-11T00:00:00Z",
             location: "Praia das Areias",
             description: "Etapa Local Roots de Surf.",
-            image: "/placeholder.svg",
+            image: "/imagens/eventos/local_roots.jpeg",
             date: "11 de August, 2018"
         },
         {
@@ -112,16 +112,6 @@ async function main() {
             image: "/imagens/eventos/areias_classic.jpg",
             date: "11 de Novembro, 2007",
         },
-        // {
-        //     title: "Pós Treino",
-        //     startDate: "2023-07-30T00:00:00Z",
-        //     endDate: "2023-07-30T00:00:00Z",
-        //     location: "Praia das Areias",
-        //     description: "Evento de integração pós treino.",
-        //     image: "/placeholder.svg?text=Pos+Treino+2023",
-        //     date: "30 de July, 2023",
-        // },
-
     ];
 
     // Insert all events into the database

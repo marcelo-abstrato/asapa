@@ -1,15 +1,15 @@
 <svg width="100%" height="100%" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
     <!-- Black background -->
-    <rect width="100%" height="100%" fill="#000000"/>
+    <rect width="100%" height="100%" fill="#dbeafe"/>
 
     <!-- Camera icon -->
-    <g transform="translate(350, 175)" fill="#ffffff" opacity="0.5">
+    <g transform="translate(350, 175)" fill="#000000" opacity="0.5">
         <path d="M50,0 L70,20 L100,20 A10,10 0 0 1 110,30 L110,80 A10,10 0 0 1 100,90 L0,90 A10,10 0 0 1 -10,80 L-10,30 A10,10 0 0 1 0,20 L30,20 L50,0 Z M50,30 A25,25 0 1 0 50,80 A25,25 0 1 0 50,30 Z"/>
     </g>
 
     <!-- Text placeholder - will be replaced by JavaScript if text parameter is provided -->
     <text id="placeholderText" x="400" y="300" font-family="Arial, sans-serif" font-size="24" text-anchor="middle"
-          fill="#ffffff">Imagem não disponível
+          fill="#000000">Imagem não disponível
     </text>
 
     <!-- JavaScript to handle text parameter -->

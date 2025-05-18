@@ -13,7 +13,7 @@ export default function HistoriaPage() {
                 <div className="container flex h-20 md:h-16 items-center justify-between">
                     <div className="flex items-center gap-2 font-bold text-xl text-[#1d4ed8]">
                         <Link href="/">
-                            <Image src="/images/logo-asapa.png" alt="ASAPA Logo" width={40} height={40}
+                            <Image src="/imagens/logo-asapa.png" alt="ASAPA Logo" width={40} height={40}
                                    className="rounded-full"/>
                         </Link>
                     </div>

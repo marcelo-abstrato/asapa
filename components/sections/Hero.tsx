@@ -27,7 +27,7 @@ export function Hero() {
                     <div
                         className="mx-auto w-full max-w-[500px] aspect-video relative rounded-xl overflow-hidden shadow-xl hidden md:block">
                         <Image
-                            src="/images/foto-capa.jpeg?height=500&width=800"
+                            src="/imagens/foto-capa.jpeg?height=500&width=800"
                             alt="Equipe"
                             fill
                             className="object-cover"

@@ -22,9 +22,18 @@ export function Transparencia() {
 
                 <Tabs defaultValue="financeiro" className="w-full max-w-4xl mx-auto">
                     <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="financeiro">Relatórios Financeiros</TabsTrigger>
-                        <TabsTrigger value="atas">Atas de Reuniões</TabsTrigger>
-                        <TabsTrigger value="doacoes" disabled>Doações</TabsTrigger>
+                        <TabsTrigger value="financeiro">
+                            <span className="hidden md:inline">Relatórios Financeiros</span>
+                            <span className="md:hidden">Financeiro</span>
+                        </TabsTrigger>
+                        <TabsTrigger value="atas">
+                            <span className="hidden md:inline">Atas de Reuniões</span>
+                            <span className="md:hidden">Reunioes</span>
+                        </TabsTrigger>
+                        <TabsTrigger value="doacoes" disabled>
+                            <span className="hidden md:inline">Doações</span>
+                            <span className="md:hidden">Doacao</span>
+                        </TabsTrigger>
                     </TabsList>
                     <TabsContent value="financeiro" className="p-4 border rounded-lg mt-4">
                         <div className="space-y-4">

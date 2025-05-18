@@ -13,17 +13,17 @@ export interface EventCardProps {
         description: string;
         image: string;
     };
-    showResults?: boolean;
+    showSubscribe?: boolean;
     isPastEvent?: boolean;
 }
 
 export function EventCard({
                               event,
-                              showResults = false,
+                              showSubscribe = false,
                               isPastEvent = false
                           }: EventCardProps) {
-    // Image container with fixed aspect ratio and black background
-    const imageContainerClasses = "md:w-1/3 h-48 md:h-auto relative aspect-[16/9] bg-black";
+    // Image container with fixed aspect ratio and blue background
+    const imageContainerClasses = "md:w-1/3 h-48 md:h-auto relative aspect-[16/9] bg-blue-100";
 
     // Container layout
     const containerClasses = "flex flex-col md:flex-row gap-6 border rounded-lg overflow-hidden bg-white shadow-sm";
@@ -60,33 +60,30 @@ export function EventCard({
                             <Button
                                 variant="outline"
                                 className="text-[#1d4ed8] border-[#1d4ed8]"
-                                title="Em breve teremos a galeria de fotos disponível!"
+                                disabled={true}
+                                disabledTooltip="Em breve teremos a galeria de fotos disponível!"
                                 aria-label={`Ver galeria de fotos do evento ${event.title}`}
                             >
                                 Ver Galeria de Fotos
                             </Button>
-
-                            {showResults && (
-                                <Button
-                                    variant="ghost"
-                                    className="text-[#1d4ed8]"
-                                    aria-label={`Ver resultados do evento ${event.title}`}
-                                >
-                                    Resultados
-                                </Button>
-                            )}
                         </>
                     ) : (
                         <>
-                            <Button
-                                className="bg-[#1d4ed8] hover:bg-[#1e40af]"
-                                aria-label={`Inscrever-se no evento ${event.title}`}
-                            >
-                                Inscrever-se
-                            </Button>
+                            {showSubscribe && (
+                                <Button
+                                    className="bg-[#1d4ed8] hover:bg-[#1e40af]"
+                                    disabled={event.title.includes("Esgotado")}
+                                    disabledTooltip="Inscrições esgotadas para este evento"
+                                    aria-label={`Inscrever-se no evento ${event.title}`}
+                                >
+                                    Inscrever-se
+                                </Button>
+                            )}
                             <Button
                                 variant="outline"
                                 className="text-[#1d4ed8] border-[#1d4ed8]"
+                                disabled={true}
+                                disabledTooltip="Em breve"
                                 aria-label={`Mais informações sobre o evento ${event.title}`}
                             >
                                 Mais Informações

@@ -96,7 +96,7 @@ export function Footer() {
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
                             <Image
-                                src="/images/logo-asapa.png"
+                                src="/imagens/logo-asapa.png"
                                 alt="ASAPA Logo"
                                 width={80}
                                 height={80}

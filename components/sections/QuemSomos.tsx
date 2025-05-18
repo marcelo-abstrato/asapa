@@ -48,7 +48,7 @@ export function QuemSomos() {
                     </div>
                     <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">
                         <Image
-                            src="/images/diretoria.jpeg?height=400&width=600&text=Fundadores+da+ASAPA"
+                            src="/imagens/diretoria.jpeg?height=400&width=600&text=Fundadores+da+ASAPA"
                             alt="Fundadores da ASAPA"
                             fill
                             className="object-cover"

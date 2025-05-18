@@ -16,6 +16,7 @@
     "@prisma/extension-accelerate": "^0.6.0",
     "@radix-ui/react-slot": "^1.2.2",
     "@radix-ui/react-tabs": "^1.1.11",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@types/nodemailer": "^6.4.17",
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
