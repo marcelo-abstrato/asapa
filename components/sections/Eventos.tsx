@@ -115,7 +115,6 @@ export async function Eventos() {
                                     <EventCard
                                         key={index}
                                         event={event}
-                                        imageOrientation="horizontal"
                                         isPastEvent={false}
                                     />
                                 ))
@@ -130,7 +129,6 @@ export async function Eventos() {
                                     <EventCard
                                         key={index}
                                         event={event}
-                                        imageOrientation="horizontal"
                                         isPastEvent={true}
                                         showResults={true}
                                     />

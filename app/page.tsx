@@ -12,7 +12,8 @@ import {
     Footer,
     Hero,
     MissaoVisaoValores,
-    QuemSomos
+    QuemSomos,
+    Transparencia
 } from "@/components/sections"
 
 export default async function Home() {
@@ -40,7 +41,7 @@ export default async function Home() {
               <Eventos/>
               <Associese/>
               <Doacao/>
-              {/*<Transparencia/>*/}
+              <Transparencia/>
               {/*<Noticias/>*/}
               <Contato/>
       </main>

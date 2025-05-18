@@ -116,13 +116,10 @@ export default async function EventosPage() {
                             <TabsContent value="todos" className="space-y-6">
                                 {todosEventos.map((event, index) => {
                                     const isPastEvent = !eventosFuturos.some(e => e.id === event.id);
-                                    // Alternate between horizontal and vertical orientation for demonstration
-                                    const orientation = index % 2 === 0 ? "horizontal" : "vertical";
                                     return (
                                         <EventCard
                                             key={index}
                                             event={event}
-                                            imageOrientation={orientation}
                                             isPastEvent={isPastEvent}
                                             showResults={isPastEvent}
                                         />
@@ -135,7 +132,6 @@ export default async function EventosPage() {
                                     <EventCard
                                         key={index}
                                         event={event}
-                                        imageOrientation="horizontal"
                                         isPastEvent={false}
                                         showResults={false}
                                     />
@@ -147,7 +143,6 @@ export default async function EventosPage() {
                                     <EventCard
                                         key={index}
                                         event={event}
-                                        imageOrientation="horizontal"
                                         isPastEvent={true}
                                         showResults={true}
                                     />
