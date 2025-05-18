@@ -1,14 +1,14 @@
 export const navLinks = [
     {
-        href: "#quem-somos",
+        href: "/#quem-somos",
         label: "Quem Somos",
         submenu: [
-            {href: "/historia", label: "Nossa História"},
-            {href: "#missao-visao-valores", label: "Missão, Visão e Valores"},
+            {href: "/#quem-somo", label: "Nossa História"},
+            {href: "/#missao-visao-valores", label: "Missão, Visão e Valores"},
         ],
     },
     {
-        href: "#diretoria",
+        href: "/#diretoria",
         label: "Diretoria",
         // submenu: [
         //     {href: "#diretoria-atual", label: "Diretoria Atual"},
@@ -17,7 +17,7 @@ export const navLinks = [
         // ],
     },
     {
-        href: "#eventos",
+        href: "/#eventos",
         label: "Eventos",
         // submenu: [
         //     {href: "#eventos-futuros", label: "Eventos Futuros"},
@@ -26,11 +26,11 @@ export const navLinks = [
         // ],
     },
     {
-        href: "#doacao",
+        href: "/#doacao",
         label: "Doação",
     },
     {
-        href: "#transparencia",
+        href: "/#transparencia",
         label: "Transparência",
     },
     // {
@@ -43,11 +43,11 @@ export const navLinks = [
     //     ],
     // },
     {
-        href: "#contato",
+        href: "/#contato",
         label: "Contato",
     },
     {
-        href: "#associe-se",
+        href: "/#associe-se",
         label: "Associe-se",
         // submenu: [
         //     {href: "#beneficios", label: "Benefícios"},

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import {DesktopNav, MobileMenu} from "@/components/navigation"
 import {navLinks} from "@/mocks/navigation"
 import {SpeedInsights} from "@vercel/speed-insights/next"
@@ -22,8 +23,10 @@ export default function Home() {
               className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
               <div className="container flex h-16 items-center justify-between">
                   <div className="flex items-center gap-2 font-bold text-xl text-[#1d4ed8]">
-                      <Image src="/images/logo-asapa.png" alt="ASAPA Logo" width={40} height={40}
-                             className="rounded-full"/>
+                      <Link href="/">
+                          <Image src="/images/logo-asapa.png" alt="ASAPA Logo" width={40} height={40}
+                                 className="rounded-full"/>
+                      </Link>
                   </div>
                   <DesktopNav links={navLinks}/>
                   <MobileMenu links={navLinks}/>
