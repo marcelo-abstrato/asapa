@@ -3,6 +3,7 @@ import Image from "next/image";
 import {Button} from "@/components/ui/button";
 import {CalendarIcon, LocationIcon} from "@/components/icons";
 import {formatDateRange, formatISODate} from "@/lib/helpers";
+import {EventImageFallback} from "@/components/ui/EventImageFallback";
 
 export interface EventCardProps {
     event: {
@@ -32,12 +33,16 @@ export function EventCard({
     return (
         <div className={containerClasses}>
             <div className={imageContainerClasses}>
-                <Image
-                    src={event.image || "/placeholder.svg"}
-                    alt={event.title}
-                    fill
-                    className="object-contain"
-                />
+                {event.image ? (
+                    <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        className="object-contain"
+                    />
+                ) : (
+                    <EventImageFallback/>
+                )}
             </div>
             <div className="flex-1 p-4 sm:p-6 flex flex-col">
                 <h3 className="text-xl font-bold">{event.title}</h3>

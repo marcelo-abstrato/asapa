@@ -87,7 +87,7 @@ export function Diretoria() {
     );
 
     return (
-        <section id="diretoria" className="w-full py-12 md:py-24 bg-white">
+        <section id="diretoria" className="w-full py-12 md:py-24 bg-[#f3f4f6]">
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
                     <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-[#1d4ed8]">Nossa

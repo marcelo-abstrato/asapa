@@ -2,10 +2,10 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import {Facebook, Instagram, X} from "lucide-react"
+import {CheckCircle, Facebook, Instagram} from "lucide-react"
 import WaveDivider from "@/components/wave-divider"
 import {useEffect, useState} from "react"
-import {Button} from "@/components/ui/button"
+import {Modal} from "@/components/ui"
 
 export function Footer() {
     const [email, setEmail] = useState("")
@@ -257,52 +257,15 @@ export function Footer() {
                 </div>
             </div>
 
-            {/* Thank You Popup */}
-            {showThankYouPopup && (
-                <div
-                    className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 ease-in-out">
-                    <div
-                        className="bg-white text-[#1d4ed8] p-6 rounded-lg shadow-lg max-w-md w-full relative animate-fade-in">
-                        <button
-                            onClick={closeThankYouPopup}
-                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-                            aria-label="Fechar"
-                        >
-                            <X className="h-5 w-5"/>
-                        </button>
-                        <div className="text-center">
-                            <div
-                                className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="32"
-                                    height="32"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="text-[#1d4ed8]"
-                                >
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                    <polyline points="22 4 12 14.01 9 11.01"/>
-                                </svg>
-                            </div>
-                            <h3 className="text-xl font-bold mb-2">Obrigado por se inscrever!</h3>
-                            <p className="mb-4 text-gray-600">
-                                Você agora receberá atualizações sobre eventos, projetos e oportunidades da ASAPA.
-                            </p>
-                            <Button
-                                onClick={closeThankYouPopup}
-                                className="bg-[#1d4ed8] text-white hover:bg-[#1e40af]"
-                            >
-                                Fechar
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            {/* Thank You Modal */}
+            <Modal
+                isOpen={showThankYouPopup}
+                onClose={closeThankYouPopup}
+                title="Obrigado por se inscrever!"
+                description="Você agora receberá atualizações sobre eventos, projetos e oportunidades da ASAPA."
+                icon={<CheckCircle className="h-8 w-8 text-[#1d4ed8]"/>}
+                autoCloseTimeout={5000}
+            />
         </footer>
     )
 }

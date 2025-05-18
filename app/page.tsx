@@ -12,6 +12,7 @@ import {
     Footer,
     Hero,
     MissaoVisaoValores,
+    ODS,
     QuemSomos,
     Transparencia
 } from "@/components/sections"
@@ -37,6 +38,7 @@ export default async function Home() {
               <Hero/>
               <QuemSomos/>
               <MissaoVisaoValores/>
+              <ODS/>
               <Diretoria/>
               <Eventos/>
               <Associese/>

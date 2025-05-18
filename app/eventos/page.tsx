@@ -8,6 +8,8 @@ import {Footer} from "@/components/sections"
 import {EventCard} from "@/components/ui/EventCard"
 import {NoEventsPanel} from "@/components/ui/NoEventsPanel"
 import prisma from "@/lib/prisma"
+// Import polyfill for Promise.withResolvers
+import "@/lib/polyfills"
 
 export const metadata = {
     title: "Eventos | ASAPA",

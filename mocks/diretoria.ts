@@ -88,5 +88,11 @@ export const diretoriaMembers = [
         "role": "Diretor Técnico de Longboard",
         "bio": "51 anos, 35 de surf, natural de Florianópolis. Competidor na categoria Longboard, professor de surf e shaper. Proprietário da STONEHILL Longboards. Psicólogo clínico e Esquizoanalista.",
         "imageUrl": "/imagens/diretores/abidu.jpeg"
+    },
+    {
+        "name": "Priscilla Maria Menel Lemos",
+        "role": "",
+        "bio": "",
+        "imageUrl": "/imagens/diretores/priscilla_maria_menel_lemos.jpeg"
     }
 ];

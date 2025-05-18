@@ -46,7 +46,7 @@ async function main() {
             endDate: "2024-07-27T00:00:00Z",
             location: "Praça das Areias - Florianópolis/SC",
             description: "Praia das Areias - Florianópolis/SC",
-            image: "/placeholder.svg",
+            image: "",
             date: "12 de Outubro, 2023"
         },
         {

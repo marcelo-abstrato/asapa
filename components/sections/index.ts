@@ -6,5 +6,6 @@ export * from './Eventos';
 export * from './Footer';
 export * from './Hero';
 export * from './MissaoVisaoValores';
+export * from './ODS';
 export * from './QuemSomos';
 export * from './Transparencia';

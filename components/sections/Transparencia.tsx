@@ -1,7 +1,7 @@
-import {Button} from "@/components/ui/button"
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
+import {Button, PDFViewer, Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui"
 import {FileText} from "lucide-react"
 import {atasReunioes, relatoriosFinanceiros} from "@/mocks/transparencia"
+import Link from "next/link"
 
 export function Transparencia() {
     return (
@@ -60,17 +60,16 @@ export function Transparencia() {
                                             <h4 className="font-medium">{report.title}</h4>
                                             <p className="text-sm text-gray-500">Publicado em: {report.date}</p>
                                         </div>
-                                        <Button variant="ghost" size="sm" className="text-[#1d4ed8]">
-                                            <FileText className="h-4 w-4 mr-2"/>
-                                            Visualizar
-                                        </Button>
+                                        <PDFViewer filePath={report.file}/>
                                     </div>
                                 ))}
                             </div>
                             <div className="flex justify-center mt-4">
-                                <Button variant="outline" className="text-[#1d4ed8]">
-                                    Ver todos
-                                </Button>
+                                <Link href="/transparencia">
+                                    <Button variant="outline" className="text-[#1d4ed8]">
+                                        Ver todos
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </TabsContent>
@@ -87,17 +86,16 @@ export function Transparencia() {
                                             <h4 className="font-medium">{meeting.title}</h4>
                                             <p className="text-sm text-gray-500">Realizada em: {meeting.date}</p>
                                         </div>
-                                        <Button variant="ghost" size="sm" className="text-[#1d4ed8]">
-                                            <FileText className="h-4 w-4 mr-2"/>
-                                            Visualizar
-                                        </Button>
+                                        <PDFViewer filePath={meeting.file}/>
                                     </div>
                                 ))}
                             </div>
                             <div className="flex justify-center mt-4">
-                                <Button variant="outline" className="text-[#1d4ed8]">
-                                    Ver todos
-                                </Button>
+                                <Link href="/transparencia">
+                                    <Button variant="outline" className="text-[#1d4ed8]">
+                                        Ver todos
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </TabsContent>

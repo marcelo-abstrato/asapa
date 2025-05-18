@@ -1,20 +1,22 @@
 export const relatoriosFinanceiros = [
-    {title: "Balanço Anual 2024", date: "31/03/2025"},
-    {title: "Relatório Financeiro - 1º Trimestre 2025", date: "15/04/2025"},
-    {title: "Prestação de Contas - Campeonato Regional", date: "02/03/2025"},
-    {title: "Orçamento Anual 2025", date: "10/01/2025"},
+    {
+        title: "Balancete Mensal - Dez 2024",
+        date: "31/12/2024",
+        file: "/docs/transparencia/financeiro/2024/balancete_dez_24.pdf"
+    },
 ];
 
 export const atasReunioes = [
-    {title: "Reunião Ordinária da Diretoria", date: "25/04/2025"},
-    {title: "Assembleia Geral Extraordinária", date: "10/03/2025"},
-    {title: "Reunião de Planejamento Anual", date: "15/01/2025"},
-    {title: "Reunião com Patrocinadores", date: "05/02/2025"},
+    {
+        title: "Ata da Reunião Ordinária da Diretoria",
+        date: "01/12/2023",
+        file: "/docs/transparencia/reoniao/ata_reuniao_01_12_23.pdf"
+    },
+    {
+        title: "Reunião Ordinária da Diretoria",
+        date: "27/11/2023",
+        file: "/docs/transparencia/reoniao/balancete_dez_24.pdf"
+    },
 ];
 
-export const projetos = [
-    {title: "Escola de Surf para Crianças", progress: 75},
-    {title: "Limpeza de Praias", progress: 90},
-    {title: "Reforma da Sede", progress: 30},
-    {title: "Campeonato Regional", progress: 60},
-];
+export const doacao: { title: string; progress: number }[] = [];
