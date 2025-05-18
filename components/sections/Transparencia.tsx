@@ -1,7 +1,7 @@
 import {Button} from "@/components/ui/button"
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
 import {FileText} from "lucide-react"
-import {atasReunioes, projetos, relatoriosFinanceiros} from "@/mocks/transparencia"
+import {atasReunioes, relatoriosFinanceiros} from "@/mocks/transparencia"
 
 export function Transparencia() {
     return (
@@ -24,7 +24,7 @@ export function Transparencia() {
                     <TabsList className="grid w-full grid-cols-3">
                         <TabsTrigger value="financeiro">Relatórios Financeiros</TabsTrigger>
                         <TabsTrigger value="atas">Atas de Reuniões</TabsTrigger>
-                        <TabsTrigger value="projetos">Projetos</TabsTrigger>
+                        <TabsTrigger value="doacoes" disabled>Doações</TabsTrigger>
                     </TabsList>
                     <TabsContent value="financeiro" className="p-4 border rounded-lg mt-4">
                         <div className="space-y-4">
@@ -45,6 +45,11 @@ export function Transparencia() {
                                         </Button>
                                     </div>
                                 ))}
+                            </div>
+                            <div className="flex justify-center mt-4">
+                                <Button variant="outline" className="text-[#1d4ed8]">
+                                    Ver todos
+                                </Button>
                             </div>
                         </div>
                     </TabsContent>
@@ -68,26 +73,33 @@ export function Transparencia() {
                                     </div>
                                 ))}
                             </div>
+                            <div className="flex justify-center mt-4">
+                                <Button variant="outline" className="text-[#1d4ed8]">
+                                    Ver todos
+                                </Button>
+                            </div>
                         </div>
                     </TabsContent>
-                    <TabsContent value="projetos" className="p-4 border rounded-lg mt-4">
+                    <TabsContent value="doacoes" className="p-4 border rounded-lg mt-4">
                         <div className="space-y-4">
-                            <h3 className="text-xl font-bold">Projetos em Andamento</h3>
-                            <div className="space-y-2">
-                                {projetos.map((project, index) => (
-                                    <div key={index} className="p-3 border rounded hover:bg-gray-50">
-                                        <div className="flex justify-between items-center mb-2">
-                                            <h4 className="font-medium">{project.title}</h4>
-                                            <span className="text-sm font-medium">{project.progress}%</span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-2.5">
-                                            <div
-                                                className="bg-[#1d4ed8] h-2.5 rounded-full"
-                                                style={{width: `${project.progress}%`}}
-                                            ></div>
-                                        </div>
-                                    </div>
-                                ))}
+                            <h3 className="text-xl font-bold">Doações</h3>
+                            <div className="flex flex-col items-center justify-center p-8 text-center">
+                                <div
+                                    className="inline-block rounded-lg bg-yellow-100 px-3 py-1 text-sm text-yellow-800 mb-4">
+                                    Em breve
+                                </div>
+                                <p className="text-gray-500 mb-4">
+                                    Estamos trabalhando para disponibilizar informações sobre doações em breve.
+                                </p>
+                                <div className="w-full max-w-md bg-gray-200 rounded-full h-2.5 mb-4">
+                                    <div
+                                        className="bg-yellow-400 h-2.5 rounded-full"
+                                        style={{width: '50%'}}
+                                    ></div>
+                                </div>
+                                <p className="text-sm text-gray-400">
+                                    Desenvolvimento em andamento
+                                </p>
                             </div>
                         </div>
                     </TabsContent>
