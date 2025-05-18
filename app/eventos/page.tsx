@@ -55,8 +55,6 @@ export default async function EventosPage() {
       return new Date(a.startDate).getTime() - new Date(b.startDate).getTime();
     });
 
-  // Check if there are any events
-  const hasEvents = allEvents.length > 0;
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -145,7 +143,7 @@ export default async function EventosPage() {
                                                         <line x1="8" x2="8" y1="2" y2="6"/>
                                                         <line x1="3" x2="21" y1="10" y2="10"/>
                                                     </svg>
-                                                    {event.date}
+                                                  {formatDate(event.startDate, event.endDate)}
                                                 </div>
                                                 <div className="flex items-center text-gray-500">
                                                     <svg
@@ -225,7 +223,7 @@ export default async function EventosPage() {
                                                         <line x1="8" x2="8" y1="2" y2="6"/>
                                                         <line x1="3" x2="21" y1="10" y2="10"/>
                                                     </svg>
-                                                    {event.date}
+                                                  {formatDate(event.startDate, event.endDate)}
                                                 </div>
                                                 <div className="flex items-center text-gray-500">
                                                     <svg
@@ -290,7 +288,7 @@ export default async function EventosPage() {
                                                         <line x1="8" x2="8" y1="2" y2="6"/>
                                                         <line x1="3" x2="21" y1="10" y2="10"/>
                                                     </svg>
-                                                    {event.date}
+                                                  {formatDate(event.startDate, event.endDate)}
                                                 </div>
                                                 <div className="flex items-center text-gray-500">
                                                     <svg

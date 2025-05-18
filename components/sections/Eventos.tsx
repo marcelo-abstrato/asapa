@@ -26,8 +26,19 @@ function formatDate(startDate: Date, endDate: Date) {
     }
 }
 
+// Define the Event interface
+interface Event {
+    title: string;
+    startDate: Date;
+    endDate: Date;
+    date?: string; // Optional as it's kept for backward compatibility
+    location: string;
+    description: string;
+    image: string;
+}
+
 // Helper function to determine if an event is in the future
-function isFutureEvent(event: any) {
+function isFutureEvent(event: Event) {
     const now = new Date();
     return event.endDate > now;
 }

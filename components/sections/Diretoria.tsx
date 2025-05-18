@@ -7,12 +7,6 @@ import {diretoriaMembers} from "@/mocks/diretoria"
 import {useCallback, useEffect, useState} from "react"
 import {AnimatePresence, motion} from "framer-motion"
 
-interface DiretoriaMember {
-    name: string;
-    role: string;
-    bio: string;
-    imageUrl: string;
-}
 
 export function Diretoria() {
     const [currentPage, setCurrentPage] = useState(0);
@@ -103,8 +97,6 @@ export function Diretoria() {
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                         >
                             {currentItems.map((member, index) => {
-                                const globalIndex = currentPage * itemsPerPage + index;
-
                                 return (
                                     <Card key={index} className="overflow-hidden flex flex-col h-[450px] min-h-[450px]">
                                         <div className="h-60 bg-gray-200 relative">
