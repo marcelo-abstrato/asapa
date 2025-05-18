@@ -19,11 +19,6 @@ export const navLinks = [
     {
         href: "/#eventos",
         label: "Eventos",
-        // submenu: [
-        //     {href: "#eventos-futuros", label: "Eventos Futuros"},
-        //     {href: "#eventos-passados", label: "Eventos Passados"},
-        //     {href: "#calendario", label: "Calendário Anual"},
-        // ],
     },
     {
         href: "/#doacao",
@@ -49,10 +44,5 @@ export const navLinks = [
     {
         href: "/#associe-se",
         label: "Associe-se",
-        // submenu: [
-        //     {href: "#beneficios", label: "Benefícios"},
-        //     {href: "#planos", label: "Planos"},
-        //     {href: "#faq-associados", label: "FAQ"},
-        // ],
     },
 ];

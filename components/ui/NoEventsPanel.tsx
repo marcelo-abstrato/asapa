@@ -8,14 +8,14 @@ interface NoEventsPanelProps {
 
 export function NoEventsPanel({type = 'all', showButton = true}: NoEventsPanelProps) {
     let title = 'Nenhum evento encontrado';
-    let description = 'Não há eventos cadastrados no momento.';
+    let description = 'Parece que ainda não temos eventos cadastrados. Fique de olho, em breve teremos novidades para você!';
 
     if (type === 'future') {
-        title = 'Nenhum evento futuro';
-        description = 'Não há eventos futuros agendados no momento.';
+        title = 'Nenhum evento próximo';
+        description = 'No momento não temos eventos agendados, mas estamos trabalhando para trazer experiências incríveis para nossa comunidade em breve. Volte logo para conferir as novidades!';
     } else if (type === 'past') {
         title = 'Nenhum evento passado';
-        description = 'Não há registros de eventos passados.';
+        description = 'Ainda não temos registros de eventos anteriores. Nossa história está apenas começando e você faz parte dela!';
     }
 
     return (

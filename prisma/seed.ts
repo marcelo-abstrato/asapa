@@ -1,116 +1,125 @@
-const {PrismaClient} = require("@prisma/client")
+import {PrismaClient} from "@prisma/client";
 
-const prisma = new PrismaClient()
+// Define the Event interface
+interface EventData {
+    title: string;
+    startDate: string | Date;
+    endDate: string | Date;
+    location: string;
+    description: string;
+    image: string;
+    date?: string; // Optional as it's only used for reference
+}
+
+const prisma = new PrismaClient();
 
 async function main() {
-    // Clear existing data
-    await prisma.event.deleteMany({})
+    // Clear existing events
+    await prisma.event.deleteMany({});
 
-    // Create future events
-    const futureEvents = [
-        {
-            title: "Campeonato Regional de Surf",
-            startDate: new Date("2025-06-15T09:00:00Z"),
-            endDate: new Date("2025-06-16T18:00:00Z"),
-            date: "15-16 de Junho, 2025", // Keeping for backward compatibility
-            location: "Praia Grande",
-            description: "Competição aberta para surfistas de todos os níveis com premiação para diversas categorias.",
-            image: "/placeholder.svg?height=200&width=300&text=Campeonato",
-            isFuture: true
-        },
-        {
-            title: "Workshop de Técnicas Avançadas",
-            startDate: new Date("2025-06-22T10:00:00Z"),
-            endDate: new Date("2025-06-22T16:00:00Z"),
-            date: "22 de Junho, 2025", // Keeping for backward compatibility
-            location: "Sede da Associação",
-            description: "Workshop ministrado por surfistas profissionais com dicas para aprimorar suas manobras.",
-            image: "/placeholder.svg?height=200&width=300&text=Workshop",
-            isFuture: true
-        },
-        {
-            title: "Mutirão de Limpeza da Praia",
-            startDate: new Date("2025-06-29T08:00:00Z"),
-            endDate: new Date("2025-06-29T12:00:00Z"),
-            date: "29 de Junho, 2025", // Keeping for backward compatibility
-            location: "Praia do Sol",
-            description: "Ação ambiental para preservação do nosso principal espaço de prática do surf.",
-            image: "/placeholder.svg?height=200&width=300&text=Limpeza",
-            isFuture: true
-        },
-        {
-            title: "Festival de Surf e Música",
-            startDate: new Date("2025-07-13T10:00:00Z"),
-            endDate: new Date("2025-07-14T22:00:00Z"),
-            date: "13-14 de Julho, 2025", // Keeping for backward compatibility
-            location: "Praia Central",
-            description: "Dois dias de competições, apresentações musicais, gastronomia e muito mais.",
-            image: "/placeholder.svg?height=200&width=300&text=Festival",
-            isFuture: true
-        }
-    ]
+    // Future events
+    const futureEvents: EventData[] = [];
 
-    // Create past events
-    const pastEvents = [
+    // Past events
+    const pastEvents: EventData[] = [
         {
-            title: "Campeonato Estadual de Surf",
-            startDate: new Date("2025-03-10T09:00:00Z"),
-            endDate: new Date("2025-03-12T18:00:00Z"),
-            date: "10-12 de Março, 2025", // Keeping for backward compatibility
-            location: "Praia do Forte",
-            description: "Competição que reuniu os melhores surfistas do estado com premiação total de R$ 50.000.",
-            image: "/placeholder.svg?height=200&width=300&text=Estadual",
-            isFuture: false
+            title: "Areias Classic - 2ª edição",
+            startDate: "2008-09-17T00:00:00Z",
+            endDate: "2008-09-17T00:00:00Z",
+            location: "Igarassu",
+            description: "Segunda edição do Areias Classic.",
+            image: "/imagens/eventos/areias_classic_2.jpg",
+            date: "17 de September, 2008"
         },
         {
-            title: "Curso de Primeiros Socorros",
-            startDate: new Date("2025-02-25T09:00:00Z"),
-            endDate: new Date("2025-02-25T17:00:00Z"),
-            date: "25 de Fevereiro, 2025", // Keeping for backward compatibility
-            location: "Sede da Associação",
-            description: "Treinamento essencial para surfistas sobre como agir em situações de emergência no mar.",
-            image: "/placeholder.svg?height=200&width=300&text=Primeiros+Socorros",
-            isFuture: false
+            title: "Areias Classic - 1ª edição",
+            startDate: "2007-11-11T00:00:00Z",
+            endDate: "2007-11-11T23:59:59Z",
+            location: "Praia das Areias",
+            description: "Primeira edição do Areias Classic.",
+            image: "/imagens/eventos/areias_classic.jpg",
+            date: "11 de Novembro, 2007",
         },
-        {
-            title: "Ação de Reflorestamento de Dunas",
-            startDate: new Date("2025-01-15T08:00:00Z"),
-            endDate: new Date("2025-01-15T12:00:00Z"),
-            date: "15 de Janeiro, 2025", // Keeping for backward compatibility
-            location: "Dunas da Praia Grande",
-            description: "Plantio de vegetação nativa para preservação das dunas e do ecossistema costeiro.",
-            image: "/placeholder.svg?height=200&width=300&text=Reflorestamento",
-            isFuture: false
-        },
-        {
-            title: "Confraternização de Fim de Ano",
-            startDate: new Date("2024-12-18T19:00:00Z"),
-            endDate: new Date("2024-12-18T23:59:00Z"),
-            date: "18 de Dezembro, 2024", // Keeping for backward compatibility
-            location: "Clube Náutico",
-            description: "Celebração com todos os associados, familiares e apoiadores da ASAPA.",
-            image: "/placeholder.svg?height=200&width=300&text=Confraternização",
-            isFuture: false
-        }
-    ]
+        // {
+        //     title: "Pós Treino",
+        //     startDate: "2023-07-30T00:00:00Z",
+        //     endDate: "2023-07-30T00:00:00Z",
+        //     location: "Praia das Areias",
+        //     description: "Evento de integração pós treino.",
+        //     image: "/placeholder.svg?text=Pos+Treino+2023",
+        //     date: "30 de July, 2023",
+        // },
 
-    // Insert all events
+        // {
+        //     title: "Circuito Filho do Surf",
+        //     startDate: "2013-11-30T00:00:00Z",
+        //     endDate: "2013-11-30T00:00:00Z",
+        //     location: "Praia das Areias",
+        //     description: "Evento voltado para jovens surfistas.",
+        //     image: "/placeholder.svg?text=Filho+do+Surf",
+        //     date: "30 de November, 2013"
+        // },
+        // {
+        //     title: "Areeiros Classic Igarassu 1ª edição",
+        //     startDate: "2016-05-14T00:00:00Z",
+        //     endDate: "2016-05-14T00:00:00Z",
+        //     location: "Igarassu",
+        //     description: "Primeira edição do Areeiros Classic em Igarassu.",
+        //     image: "/placeholder.svg?text=Igarassu+1",
+        //     date: "14 de May, 2016"
+        // },
+        // {
+        //     title: "Areeiros Classic Igarassu 3ª edição",
+        //     startDate: "2017-04-29T00:00:00Z",
+        //     endDate: "2017-04-29T00:00:00Z",
+        //     location: "Igarassu",
+        //     description: "Terceira edição do Areeiros Classic em Igarassu.",
+        //     image: "/placeholder.svg?text=Igarassu+3",
+        //     date: "29 de April, 2017"
+        // },
+        // {
+        //     title: "Etapa Local Roots",
+        //     startDate: "2018-08-11T00:00:00Z",
+        //     endDate: "2018-08-11T00:00:00Z",
+        //     location: "Praia das Areias",
+        //     description: "Etapa Local Roots de Surf.",
+        //     image: "/placeholder.svg?text=Local+Roots",
+        //     date: "11 de August, 2018"
+        // },
+        // {
+        //     title: "3ª Etapa Circuito Adriano de Souza",
+        //     startDate: "2018-09-22T00:00:00Z",
+        //     endDate: "2018-09-23T00:00:00Z",
+        //     location: "Praia das Areias",
+        //     description: "Etapa do circuito em homenagem a Adriano de Souza.",
+        //     image: "/placeholder.svg?text=Adriano+Souza",
+        //     date: "22 de September, 2018"
+        // },
+
+    ];
+
+    // Insert all events into the database
     for (const event of [...futureEvents, ...pastEvents]) {
-        // Destructure to remove 'date' field which is not in the schema
-        const {date, ...eventData} = event
+        const {date, ...eventData} = event;
+
+        // Ensure dates are properly converted to Date objects
+        eventData.startDate = new Date(eventData.startDate);
+        eventData.endDate = new Date(eventData.endDate);
+
+        // Create the event in the database
         await prisma.event.create({
             data: eventData
-        })
+        });
     }
 
-    console.log('Database has been seeded with events data')
+    console.log("Database has been seeded with events data");
 }
 
 main()
     .catch((e) => {
-        console.error(e)
-        process.exit(1)
+        console.error(e);
+        process.exit(1);
     })
     .finally(async () => {
-        await prisma.$disconnect()
-    })
+        await prisma.$disconnect();
+    });
