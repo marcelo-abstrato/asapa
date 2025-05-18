@@ -4,7 +4,7 @@ import Image from "next/image"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card"
 import {ChevronLeft, ChevronRight, Users} from "lucide-react"
 import {diretoriaMembers} from "@/mocks/diretoria"
-import {useCallback, useEffect, useState} from "react"
+import {useCallback, useEffect, useRef, useState} from "react"
 import {AnimatePresence, motion} from "framer-motion"
 
 
@@ -12,6 +12,8 @@ export function Diretoria() {
     const [currentPage, setCurrentPage] = useState(0);
     // Get carousel timer from environment variable or use default (5000ms)
     const carouselTimer = process.env.NEXT_PUBLIC_CAROUSEL_TIMER ? parseInt(process.env.NEXT_PUBLIC_CAROUSEL_TIMER) : 5000;
+    // Reference to store the interval timer
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     // Determine items per page based on screen size
     const getItemsPerPage = () => {
@@ -51,16 +53,31 @@ export function Diretoria() {
     // Auto-advance carousel with debounce
     useEffect(() => {
         const pageChanger = debouncedPageChange();
-        const interval = setInterval(pageChanger, carouselTimer);
-        return () => clearInterval(interval);
+        intervalRef.current = setInterval(pageChanger, carouselTimer);
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
     }, [debouncedPageChange, carouselTimer, totalPages]);
+
+    // Function to reset the timer
+    const resetTimer = useCallback(() => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+        const pageChanger = debouncedPageChange();
+        intervalRef.current = setInterval(pageChanger, carouselTimer);
+    }, [debouncedPageChange, carouselTimer]);
 
     const handlePrevPage = () => {
         setCurrentPage((prevPage) => (prevPage - 1 + totalPages) % totalPages);
+        resetTimer();
     };
 
     const handleNextPage = () => {
         setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
+        resetTimer();
     };
 
     // Get current page items
@@ -137,7 +154,10 @@ export function Diretoria() {
                             {Array.from({length: totalPages}).map((_, index) => (
                                 <button
                                     key={index}
-                                    onClick={() => setCurrentPage(index)}
+                                    onClick={() => {
+                                        setCurrentPage(index);
+                                        resetTimer();
+                                    }}
                                     className={`w-3 h-3 rounded-full ${
                                         currentPage === index ? "bg-[#1d4ed8]" : "bg-gray-300"
                                     }`}

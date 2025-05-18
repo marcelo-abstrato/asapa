@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image"
 import {Button} from "@/components/ui/button"
 
@@ -18,7 +20,8 @@ export function Hero() {
                         </p>
                         <div className="flex flex-col gap-2 min-[400px]:flex-row">
                             <Button
-                                className="bg-white text-[#1d4ed8] hover:bg-gray-100 font-bold text-lg px-6 py-5 transition-all hover:scale-105 shadow-lg">Associe-se</Button>
+                                className="bg-white text-[#1d4ed8] hover:bg-gray-100 font-bold text-lg px-6 py-5 transition-all hover:scale-105 shadow-lg"
+                                onClick={() => window.location.href = "#associe-se"}>Associe-se</Button>
                         </div>
                     </div>
                     <div
