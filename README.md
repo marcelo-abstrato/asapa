@@ -14,9 +14,9 @@ Contains reusable React components organized by type:
 
 - `/components/navigation`: Navigation components (desktop and mobile)
 - `/components/sections`: Page section components
-- `/components/ui`: Reusable UI components
+- `/components/ui`: Reusable UI components (buttons, cards, tabs, etc.)
 - `/components/layout`: Layout components
-- `/components/icons`: Icon components
+- `/components/icons`: SVG icon components with accessibility attributes
 
 ### `/lib`
 
@@ -137,6 +137,17 @@ pnpm dev
 # or
 bun dev
 ```
+
+> **Note:** The development server uses the standard Next.js development server. Turbopack was removed due to
+> compatibility issues with Next.js 15.2.4 that caused build manifest errors.
+>
+> If you encounter any build errors, you can clean the build artifacts by running:
+>
+> ```bash
+> npm run clean
+> # or
+> yarn clean
+> ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
