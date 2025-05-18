@@ -3,9 +3,21 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {EventCard} from "@/components/ui/EventCard";
 import {NoEventsPanel} from "@/components/ui/NoEventsPanel";
 
+interface Event {
+    id: string;
+    title: string;
+    startDate: Date;
+    endDate: Date;
+    location: string;
+    description: string;
+    image: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+}
+
 interface EventTabsProps {
-    futureEvents: any[];
-    pastEvents: any[];
+    futureEvents: Event[];
+    pastEvents: Event[];
     className?: string;
 }
 

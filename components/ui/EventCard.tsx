@@ -15,12 +15,13 @@ export interface EventCardProps {
     };
     showSubscribe?: boolean;
     isPastEvent?: boolean;
+    showResults?: boolean;
 }
 
 export function EventCard({
                               event,
                               showSubscribe = false,
-                              isPastEvent = false
+                              isPastEvent = false,
                           }: EventCardProps) {
     // Image container with fixed aspect ratio and blue background
     const imageContainerClasses = "md:w-1/3 h-48 md:h-auto relative aspect-[16/9] bg-blue-100";
