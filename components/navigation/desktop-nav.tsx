@@ -3,19 +3,10 @@
 import {useState} from "react"
 import Link from "next/link"
 import {ChevronDown} from "lucide-react"
+import {cn} from "@/lib/helpers/css-utils"
+import {NavigationProps} from "./types"
 
-interface DesktopNavProps {
-    links: {
-        href: string
-        label: string
-        submenu?: {
-            href: string
-            label: string
-        }[]
-    }[]
-}
-
-export default function DesktopNav({links}: DesktopNavProps) {
+export default function DesktopNav({links}: NavigationProps) {
     const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 
     return (
@@ -29,12 +20,15 @@ export default function DesktopNav({links}: DesktopNavProps) {
                 >
                     <Link
                         href={link.href}
-                        className={`
-                            ${link.label === "Associe-se"
-                            ? "bg-[#1d4ed8] text-white px-4 py-2 rounded-full font-bold hover:bg-blue-700 transition-colors"
-                            : `text-sm font-medium hover:text-[#1d4ed8] transition-colors flex items-center ${hoveredItem === link.label ? "text-[#1d4ed8]" : ""}`
-                        }
-                        `}
+                        className={cn(
+                            "transition-colors",
+                            link.label === "Associe-se"
+                                ? "bg-blue-700 text-white px-4 py-2 rounded-full font-bold hover:bg-blue-800"
+                                : cn(
+                                    "text-sm font-medium hover:text-blue-700 flex items-center",
+                                    hoveredItem === link.label && "text-blue-700"
+                                )
+                        )}
                     >
                         {link.label}
                         {link.submenu && link.label !== "Associe-se" && <ChevronDown className="ml-1 h-4 w-4"/>}
@@ -47,7 +41,7 @@ export default function DesktopNav({links}: DesktopNavProps) {
                                 <Link
                                     key={subIndex}
                                     href={subItem.href}
-                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#1d4ed8]"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
                                 >
                                     {subItem.label}
                                 </Link>
