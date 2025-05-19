@@ -15,7 +15,7 @@ interface NewsletterFormData {
  * @param data The data to pass to the template
  * @returns The rendered HTML
  */
-async function renderEmailTemplate(template: string, data: Record<string, any>): Promise<string> {
+async function renderEmailTemplate(template: string, data: Record<string, unknown>): Promise<string> {
     try {
         // Path to the template
         const templatePath = path.join(process.cwd(), 'templates', 'emails', `${template}.ejs`);

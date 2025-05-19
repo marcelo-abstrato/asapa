@@ -28,8 +28,6 @@ export const metadata: Metadata = {
 
 
 export default async function EventosPage() {
-  const now = new Date();
-
     // Use mock data instead of database
     // Future events should be in ascending order for chronological display
     const eventosFuturos = [...mockFutureEvents]

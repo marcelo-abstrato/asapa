@@ -1,10 +1,9 @@
 "use client";
 
-import {useState, useEffect, useCallback} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {hasCookie, setCookie} from "@/lib/helpers";
 import {Button} from "./button";
-import {Modal} from "./modal";
-import {Check, Info, FileText, Save} from "lucide-react";
+import {Check, FileText, Info} from "lucide-react";
 
 // Cookie consent keys for different types of cookies
 const COOKIE_CONSENT_KEYS = {

@@ -62,12 +62,12 @@ function Button({
         }
 
         if (props.onClick && !props.disabled) {
-            props.onClick(e as any)
+            props.onClick(e as React.MouseEvent<HTMLButtonElement>)
         }
     }
 
     // Create a new props object without the onClick prop
-    const {onClick: _, ...restProps} = props;
+    const {...restProps} = props;
 
     const buttonElement = (
         <Comp

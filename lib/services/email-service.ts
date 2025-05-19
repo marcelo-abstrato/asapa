@@ -8,7 +8,7 @@ export interface EmailOptions {
     to: string;
     subject: string;
     template: string;
-    data: Record<string, any>;
+    data: Record<string, unknown>;
 }
 
 // Email configuration
@@ -37,7 +37,7 @@ const transporter = nodemailer.createTransport({
  * @param data The data to pass to the template
  * @returns The rendered HTML
  */
-export async function renderEmailTemplate(template: string, data: Record<string, any>): Promise<string> {
+export async function renderEmailTemplate(template: string, data: Record<string, unknown>): Promise<string> {
     try {
         // Path to the template
         const templatePath = path.join(process.cwd(), 'templates', 'emails', `${template}.ejs`);
@@ -280,7 +280,7 @@ export async function sendContactConfirmationEmail(
     });
 }
 
-export default {
+const emailService = {
     sendEmail,
     sendWelcomeEmail,
     sendEventNotificationEmail,
@@ -291,3 +291,5 @@ export default {
     sendContactNotificationEmail,
     sendContactConfirmationEmail,
 };
+
+export default emailService;
