@@ -1,9 +1,10 @@
+import React from "react"
 import {Award, Calendar, FileText, HeartHandshake, Home, Info, Mail, UserPlus, Users, Users2} from "lucide-react"
 
 /**
  * Returns the appropriate icon component based on the link label
  */
-export function getIconForLink(label: string): JSX.Element | null {
+export function getIconForLink(label: string): React.ReactElement | null {
     const iconProps = {className: "h-5 w-5 mr-2", "aria-hidden": true as const};
 
     switch (label.toLowerCase()) {
