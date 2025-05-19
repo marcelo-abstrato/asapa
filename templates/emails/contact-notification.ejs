@@ -1,0 +1,15 @@
+<h1>Nova mensagem de contato</h1>
+<p>Você recebeu uma nova mensagem através do formulário de contato do site da ASAPA.</p>
+
+<div style="background-color: var(--gray-light); padding: 20px; border-radius: 8px; margin: 20px 0;">
+    <p><strong>Nome:</strong> <%= name %></p>
+    <p><strong>Email:</strong> <%= email %></p>
+    <p><strong>Assunto:</strong> <%= subject %></p>
+    <p><strong>Mensagem:</strong></p>
+    <div style="background-color: var(--white); padding: 15px; border-radius: 4px; border-left: 4px solid var(--blue-primary);">
+        <%= message %>
+    </div>
+    <p><strong>Inscrição na Newsletter:</strong> <%= newsletter ? 'Sim' : 'Não' %></p>
+</div>
+
+<p>Você pode responder diretamente para o email do remetente: <a href="mailto:<%= email %>"><%= email %></a></p>

@@ -2,7 +2,7 @@
 
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card"
 import {useMediaQuery} from "@/components/hooks"
-import {ChevronLeft, ChevronRight, Globe} from "lucide-react"
+import {ChevronLeftIcon, ChevronRightIcon, GlobeIcon} from "@/components/icons"
 import Image from "next/image"
 import {useCallback, useEffect, useRef, useState} from "react"
 import {AnimatePresence, motion} from "framer-motion"
@@ -35,7 +35,7 @@ const odsData = [
     },
     {
         number: 13,
-        title: "Ação Contra a Mudança Global do Clima",
+        title: "Ação Contra a Mudança do Clima",
         description: "Realizamos ações de conscientização sobre mudanças climáticas e seus impactos nos oceanos e zonas costeiras.",
         image: "/imagens/ods/clima.png"
     },
@@ -108,14 +108,14 @@ export function ODS() {
 
     // Render ODS card (used in both grid and carousel)
     const renderODSCard = (ods: typeof odsData[0]) => (
-        <Card key={ods.number} className="border-t-4 border-t-[#1d4ed8] overflow-hidden h-full">
+        <Card key={ods.number} className="border-t-4 border-t-primary overflow-hidden h-full">
             <CardHeader className="relative">
                 <div
-                    className="absolute top-0 right-0 bg-[#1d4ed8] text-white text-xl font-bold w-12 h-12 flex items-center justify-center rounded-bl-lg">
+                    className="absolute top-0 right-0 bg-primary text-primary-foreground text-xl font-bold w-12 h-12 flex items-center justify-center rounded-bl-lg">
                     {ods.number}
                 </div>
-                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-2">
-                    <Globe className="h-6 w-6 text-[#1d4ed8]"/>
+                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-2">
+                    <GlobeIcon size={24} className="text-primary" aria-hidden={true}/>
                 </div>
                 <CardTitle className="text-2xl">{ods.title}</CardTitle>
             </CardHeader>
@@ -128,7 +128,7 @@ export function ODS() {
                 />
             </div>
             <CardContent>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                     {ods.description}
                 </p>
             </CardContent>
@@ -139,14 +139,14 @@ export function ODS() {
         <section id="ods" className="w-full py-12 md:py-24 bg-white">
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-                    <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-[#1d4ed8]">
+                    <div className="inline-block rounded-lg bg-blue-50 px-3 py-1 text-sm text-primary font-medium">
                         Compromisso Global
                     </div>
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl flex items-center gap-2">
-                        <Globe className="h-8 w-8 text-[#1d4ed8]"/>
+                        <GlobeIcon size={32} className="text-primary" aria-hidden={true}/>
                         Objetivos de Desenvolvimento Sustentável
                     </h2>
-                    <p className="max-w-[700px] text-gray-500 md:text-xl">
+                    <p className="max-w-[700px] text-muted-foreground md:text-xl">
                         Nosso alinhamento com as ODS da ONU para construir um futuro mais sustentável
                     </p>
                 </div>
@@ -171,10 +171,10 @@ export function ODS() {
                         <div className="flex justify-center items-center mt-8 gap-4">
                             <button
                                 onClick={handlePrev}
-                                className="p-2 rounded-full bg-blue-100 text-[#1d4ed8] hover:bg-blue-200 transition-colors"
+                                className="p-2 rounded-full bg-blue-50 text-primary hover:bg-blue-100 transition-colors"
                                 aria-label="Página anterior"
                             >
-                                <ChevronLeft className="h-6 w-6"/>
+                                <ChevronLeftIcon size={24} aria-hidden={true}/>
                             </button>
 
                             <div className="flex gap-2">
@@ -186,7 +186,7 @@ export function ODS() {
                                             resetTimer();
                                         }}
                                         className={`w-3 h-3 rounded-full ${
-                                            currentIndex === index ? "bg-[#1d4ed8]" : "bg-gray-300"
+                                            currentIndex === index ? "bg-primary" : "bg-muted"
                                         }`}
                                         aria-label={`Ir para página ${index + 1}`}
                                     />
@@ -195,10 +195,10 @@ export function ODS() {
 
                             <button
                                 onClick={handleNext}
-                                className="p-2 rounded-full bg-blue-100 text-[#1d4ed8] hover:bg-blue-200 transition-colors"
+                                className="p-2 rounded-full bg-blue-50 text-primary hover:bg-blue-100 transition-colors"
                                 aria-label="Próxima página"
                             >
-                                <ChevronRight className="h-6 w-6"/>
+                                <ChevronRightIcon size={24} aria-hidden={true}/>
                             </button>
                         </div>
                     </div>

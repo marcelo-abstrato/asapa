@@ -1,0 +1,26 @@
+<h1>Recebemos sua mensagem!</h1>
+
+<p>Olá <%= name %>,</p>
+
+<p>Obrigado por entrar em contato com a ASAPA - Associação de Surf das Areias do Campeche!</p>
+
+<p>Recebemos sua mensagem sobre "<strong><%= subject %></strong>" e responderemos o mais breve possível.</p>
+
+<p>Nossa equipe está trabalhando para atender sua solicitação e você receberá uma resposta em até 48 horas úteis.</p>
+
+<% if (newsletter) { %>
+    <div style="background-color: var(--blue-light); padding: 15px; border-radius: 8px; margin: 20px 0;">
+        <p><strong>Você também foi inscrito em nossa newsletter!</strong></p>
+        <p>A partir de agora, você receberá atualizações sobre eventos, ações ambientais e notícias da comunidade do
+            Campeche.</p>
+    </div>
+<% } %>
+
+<p>Enquanto isso, você pode acompanhar nossas atividades em nossas redes sociais:</p>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="https://asapa.org.br/eventos" class="button">Ver Próximos Eventos</a>
+</div>
+
+<p>Atenciosamente,</p>
+<p>Equipe ASAPA</p>

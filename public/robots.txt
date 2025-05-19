@@ -1,0 +1,6 @@
+# robots.txt for ASAPA website
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://asapa.com.br/sitemap.xml

@@ -9,10 +9,8 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 // Set up the worker for PDF.js
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.mjs',
-    import.meta.url
-).toString();
+// Using CDN approach to avoid file system issues
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 /**
  * PDFViewer Component
@@ -25,9 +23,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
  * - Error handling
  * - Fixed width of 800px for better readability
  *
- * Note: This component uses a dynamic import approach to load the PDF.js worker
- * from the pdfjs-dist package, which ensures compatibility with modern bundlers
- * and avoids network-related issues that can occur when loading from a CDN.
+ * Note: This component uses a CDN approach to load the PDF.js worker,
+ * which avoids file system issues and ensures that the worker is loaded correctly
+ * regardless of the local file structure. This is a more reliable approach for
+ * loading the PDF.js worker in Next.js applications.
  *
  * @example
  * ```tsx

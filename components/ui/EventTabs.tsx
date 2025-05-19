@@ -6,8 +6,8 @@ import {NoEventsPanel} from "@/components/ui/NoEventsPanel";
 interface Event {
     id: string;
     title: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: Date | string;
+    endDate: Date | string;
     location: string;
     description: string;
     image: string;

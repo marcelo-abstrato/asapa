@@ -112,17 +112,33 @@ export function Carousel({
                 <>
                     <button
                         onClick={handlePrev}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-10"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full px-3 py-2 shadow-md z-10 flex items-center sm:hidden"
                         aria-label="Previous slide"
                     >
-                        <ChevronLeft className="h-6 w-6 text-[#1d4ed8]"/>
+                        <ChevronLeft className="h-5 w-5 text-[#1d4ed8]"/>
+                        <span className="ml-1 text-[#1d4ed8] text-sm font-medium">Anteriores</span>
+                    </button>
+                    <button
+                        onClick={handlePrev}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-10 hidden sm:flex"
+                        aria-label="Previous slide"
+                    >
+                        <ChevronLeft className="h-5 w-5 text-[#1d4ed8]"/>
                     </button>
                     <button
                         onClick={handleNext}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-10"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full px-3 py-2 shadow-md z-10 flex items-center sm:hidden"
                         aria-label="Next slide"
                     >
-                        <ChevronRight className="h-6 w-6 text-[#1d4ed8]"/>
+                        <span className="mr-1 text-[#1d4ed8] text-sm font-medium">Proximos</span>
+                        <ChevronRight className="h-5 w-5 text-[#1d4ed8]"/>
+                    </button>
+                    <button
+                        onClick={handleNext}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-10 hidden sm:flex"
+                        aria-label="Next slide"
+                    >
+                        <ChevronRight className="h-5 w-5 text-[#1d4ed8]"/>
                     </button>
                 </>
             )}

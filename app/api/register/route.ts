@@ -1,5 +1,8 @@
 import {NextResponse} from 'next/server';
 import nodemailer from 'nodemailer';
+import ejs from 'ejs';
+import fs from 'fs';
+import path from 'path';
 
 interface RegistrationFormData {
     firstName: string;
@@ -8,6 +11,41 @@ interface RegistrationFormData {
     phone: string;
     experience: string;
     terms: boolean;
+}
+
+/**
+ * Renders an email template with the provided data
+ * @param template The name of the template to render (without extension)
+ * @param data The data to pass to the template
+ * @returns The rendered HTML
+ */
+async function renderEmailTemplate(template: string, data: Record<string, any>): Promise<string> {
+    try {
+        // Path to the template
+        const templatePath = path.join(process.cwd(), 'templates', 'emails', `${template}.ejs`);
+        const layoutPath = path.join(process.cwd(), 'templates', 'layouts', 'base.ejs');
+
+        // Read the template and layout files
+        const templateContent = fs.readFileSync(templatePath, 'utf-8');
+        const layoutContent = fs.readFileSync(layoutPath, 'utf-8');
+
+        // Render the template
+        const body = await ejs.render(templateContent, data, {async: true});
+
+        // Render the layout with the template content
+        const html = await ejs.render(layoutContent, {
+            ...data,
+            body,
+            title: data.title || 'ASAPA - Associação de Surf das Areias do Campeche',
+            email: data.email || 'membro@asapa.org.br',
+            unsubscribeUrl: data.unsubscribeUrl || 'https://asapa.org.br/unsubscribe',
+        }, {async: true});
+
+        return html;
+    } catch (error) {
+        console.error('Error rendering email template:', error);
+        throw new Error(`Failed to render email template: ${error instanceof Error ? error.message : String(error)}`);
+    }
 }
 
 export async function POST(request: Request) {
@@ -33,39 +71,42 @@ export async function POST(request: Request) {
             },
         });
 
+        // Render the registration notification email template
+        const notificationHtml = await renderEmailTemplate('registration-notification', {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            experience: data.experience,
+            terms: data.terms,
+            title: `Nova Inscrição de Associado: ${data.firstName} ${data.lastName}`,
+        });
+
         // Email to ASAPA
         const mailOptions = {
             from: process.env.EMAIL_FROM || 'noreply@asapa.com.br',
             to: 'inscricao@asapa.com.br',
             subject: `Nova Inscrição de Associado: ${data.firstName} ${data.lastName}`,
-            html: `
-        <h1>Nova inscrição de associado</h1>
-        <p><strong>Nome:</strong> ${data.firstName} ${data.lastName}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Telefone:</strong> ${data.phone}</p>
-        <p><strong>Experiência com Surf:</strong> ${data.experience}</p>
-        <p><strong>Aceitou os Termos:</strong> ${data.terms ? 'Sim' : 'Não'}</p>
-      `,
+            html: notificationHtml,
         };
 
         await transporter.sendMail(mailOptions);
+
+        // Render the registration confirmation email template
+        const confirmationHtml = await renderEmailTemplate('registration-confirmation', {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            title: 'Confirmação de Inscrição na ASAPA',
+        });
 
         // Confirmation email to user
         const confirmationOptions = {
             from: process.env.EMAIL_FROM || 'noreply@asapa.com.br',
             to: data.email,
             subject: 'Confirmação de Inscrição na ASAPA',
-            html: `
-        <h1>Obrigado por se inscrever na ASAPA!</h1>
-        <p>Olá ${data.firstName},</p>
-        <p>Recebemos sua inscrição e dentro de alguns instantes uma pessoa entrará em contato para finalizar o processo.</p>
-        <p>Detalhes da sua inscrição:</p>
-        <ul>
-          <li><strong>Nome:</strong> ${data.firstName} ${data.lastName}</li>
-        </ul>
-        <p>Atenciosamente,</p>
-        <p>Equipe ASAPA</p>
-      `,
+            html: confirmationHtml,
         };
 
         await transporter.sendMail(confirmationOptions);

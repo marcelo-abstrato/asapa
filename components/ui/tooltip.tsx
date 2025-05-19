@@ -33,14 +33,18 @@ export function Tooltip({
                             children,
                             content,
                             className,
+                            open,
+                            onOpenChange,
                             ...props
                         }: {
     children: React.ReactNode;
     content: React.ReactNode;
     className?: string;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
 } & React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>) {
     return (
-        <TooltipRoot>
+        <TooltipRoot open={open} onOpenChange={onOpenChange}>
             <TooltipTrigger asChild>{children}</TooltipTrigger>
             <TooltipContent className={className} {...props}>
                 {content}

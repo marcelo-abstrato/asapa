@@ -1,9 +1,26 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import type {Metadata} from "next";
 import {DesktopNav, MobileMenu} from "@/components/navigation";
 import {navLinks} from "@/mocks/navigation";
 import {Footer} from "@/components/sections";
+import {Button} from "@/components/ui/button";
+import {ArrowLeft} from "lucide-react";
+
+export const metadata: Metadata = {
+    title: "História da ASAPA | Associação de Surf do Atalaia e Praia do Amor",
+    description: "Conheça a trajetória da ASAPA desde sua fundação, os principais marcos históricos e como a associação tem contribuído para o desenvolvimento do surf e da comunidade local.",
+    alternates: {
+        canonical: "/historia"
+    },
+    openGraph: {
+        title: "História da ASAPA | Nossa Trajetória",
+        description: "Conheça a trajetória da ASAPA desde sua fundação, os principais marcos históricos e como a associação tem contribuído para o desenvolvimento do surf e da comunidade local.",
+        url: "https://asapa.com.br/historia",
+        type: "website",
+    }
+};
 
 export default function HistoriaPage() {
     return (
@@ -33,9 +50,18 @@ export default function HistoriaPage() {
                         <p className="max-w-[700px] text-gray-500 md:text-xl">
                             Conheça a trajetória da Associação dos Surfistas e Amigos da Praia das Areias
                         </p>
+
+                        <div className="mt-6">
+                            <Link href="/#transparencia">
+                                <Button variant="outline" className="text-[#1d4ed8] border-[#1d4ed8]">
+                                    <ArrowLeft className="h-4 w-4 mr-2"/>
+                                    Voltar para a Página Inicial
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
 
-                    <div className="max-w-4xl mx-auto">
+                    <div className="max-w-4xl mx-auto mt-12">
                         {/* Timeline */}
                         <div className="relative">
                             {/* Vertical line */}

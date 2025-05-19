@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import type {Metadata} from "next"
 import {Button} from "@/components/ui/button"
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
 import {DesktopNav, MobileMenu} from "@/components/navigation"
@@ -7,34 +8,36 @@ import {navLinks} from "@/mocks/navigation"
 import {Footer} from "@/components/sections"
 import {EventCard} from "@/components/ui/EventCard"
 import {NoEventsPanel} from "@/components/ui/NoEventsPanel"
-import prisma from "@/lib/prisma"
+import {futureEvents as mockFutureEvents, pastEvents as mockPastEvents} from "@/mocks/events"
 // Import polyfill for Promise.withResolvers
 import "@/lib/polyfills"
 
-export const metadata = {
-    title: "Eventos | ASAPA",
-    description: "Confira todos os eventos da Associação de Surf",
+export const metadata: Metadata = {
+    title: "Eventos e Campeonatos | ASAPA - Associação de Surf do Atalaia e Praia do Amor",
+    description: "Calendário completo de eventos, campeonatos, workshops e encontros da comunidade do surf organizados pela ASAPA. Confira as datas e participe!",
+    alternates: {
+        canonical: "/eventos"
+    },
+    openGraph: {
+        title: "Eventos e Campeonatos | ASAPA",
+        description: "Calendário completo de eventos, campeonatos, workshops e encontros da comunidade do surf organizados pela ASAPA.",
+        url: "https://asapa.com.br/eventos",
+        type: "website",
+    }
 }
 
 
 export default async function EventosPage() {
   const now = new Date();
 
-  // Get all events
-  const allEvents = await prisma.event.findMany({
-    orderBy: {
-        startDate: 'desc'
-        }
-  });
-
-  // Filter events based on current date
-  const eventosFuturos = allEvents.filter(event => new Date(event.endDate) > now);
-  const eventosPassados = allEvents.filter(event => new Date(event.endDate) <= now);
-
-    // Sort events - maintaining the database sort order (desc)
+    // Use mock data instead of database
     // Future events should be in ascending order for chronological display
-  eventosFuturos.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
-    // Past events are already in descending order from the database
+    const eventosFuturos = [...mockFutureEvents]
+        .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+
+    // Past events should be in descending order (newest first)
+    const eventosPassados = [...mockPastEvents]
+        .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
 
     // Combine all events for the "Todos" tab - future events first, then past events
     const todosEventos = [...eventosFuturos, ...eventosPassados];

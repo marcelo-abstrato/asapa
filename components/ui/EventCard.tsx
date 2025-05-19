@@ -8,8 +8,8 @@ import {EventImageFallback} from "@/components/ui/EventImageFallback";
 export interface EventCardProps {
     event: {
         title: string;
-        startDate: Date;
-        endDate: Date;
+        startDate: Date | string;
+        endDate: Date | string;
         location: string;
         description: string;
         image: string;

@@ -1,26 +1,15 @@
-import prisma from "@/lib/prisma";
+import {futureEvents as mockFutureEvents, pastEvents as mockPastEvents} from "@/mocks/events";
 
 /**
- * Fetches and processes events from the database
+ * Fetches and processes events from mock data
  * @returns Object containing future events, past events, and latest events
  */
 export async function getEvents() {
-    const now = new Date();
-
-    // Fetch all events from the database
-    const allEvents = await prisma.event.findMany({
-        orderBy: {
-            startDate: 'asc'
-        }
-    });
-
-    // Filter events based on current date
-    const futureEvents = allEvents
-        .filter(event => new Date(event.endDate) > now)
+    // Use mock data instead of database
+    const futureEvents = [...mockFutureEvents]
         .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
 
-    const pastEvents = allEvents
-        .filter(event => new Date(event.endDate) <= now)
+    const pastEvents = [...mockPastEvents]
         .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
 
     // Get the latest 4 events for the home page

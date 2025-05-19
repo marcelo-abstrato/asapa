@@ -1,5 +1,8 @@
 import {NextResponse} from 'next/server';
 import nodemailer from 'nodemailer';
+import ejs from 'ejs';
+import fs from 'fs';
+import path from 'path';
 
 interface ContactFormData {
     name: string;
@@ -7,6 +10,41 @@ interface ContactFormData {
     subject: string;
     message: string;
     newsletter: boolean;
+}
+
+/**
+ * Renders an email template with the provided data
+ * @param template The name of the template to render (without extension)
+ * @param data The data to pass to the template
+ * @returns The rendered HTML
+ */
+async function renderEmailTemplate(template: string, data: Record<string, any>): Promise<string> {
+    try {
+        // Path to the template
+        const templatePath = path.join(process.cwd(), 'templates', 'emails', `${template}.ejs`);
+        const layoutPath = path.join(process.cwd(), 'templates', 'layouts', 'base.ejs');
+
+        // Read the template and layout files
+        const templateContent = fs.readFileSync(templatePath, 'utf-8');
+        const layoutContent = fs.readFileSync(layoutPath, 'utf-8');
+
+        // Render the template
+        const body = await ejs.render(templateContent, data, {async: true});
+
+        // Render the layout with the template content
+        const html = await ejs.render(layoutContent, {
+            ...data,
+            body,
+            title: data.title || 'ASAPA - Associação de Surf das Areias do Campeche',
+            email: data.email || 'membro@asapa.org.br',
+            unsubscribeUrl: data.unsubscribeUrl || 'https://asapa.org.br/unsubscribe',
+        }, {async: true});
+
+        return html;
+    } catch (error) {
+        console.error('Error rendering email template:', error);
+        throw new Error(`Failed to render email template: ${error instanceof Error ? error.message : String(error)}`);
+    }
 }
 
 export async function POST(request: Request) {
@@ -30,34 +68,51 @@ export async function POST(request: Request) {
             },
         });
 
+        // Render the contact notification email template
+        const notificationHtml = await renderEmailTemplate('contact-notification', {
+            name: data.name,
+            email: data.email,
+            subject: data.subject,
+            message: data.message,
+            newsletter: data.newsletter,
+            title: `Formulário de Contato: ${data.subject}`,
+        });
+
         const mailOptions = {
             from: process.env.EMAIL_FROM || 'noreply@asapa.com.br',
             to: 'contato@asapa.com.br',
             subject: `Formulário de Contato: ${data.subject}`,
-            html: `
-        <h1>Nova mensagem de contato</h1>
-        <p><strong>Nome:</strong> ${data.name}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Assunto:</strong> ${data.subject}</p>
-        <p><strong>Mensagem:</strong> ${data.message}</p>
-        <p><strong>Inscrição na Newsletter:</strong> ${data.newsletter ? 'Sim' : 'Não'}</p>
-      `,
+            html: notificationHtml,
         };
 
         await transporter.sendMail(mailOptions);
 
         if (data.newsletter) {
+            // Add email to the newsletter database
+            try {
+                const prisma = (await import('@/lib/prisma')).default;
+                await prisma.newsletter.create({
+                    data: {
+                        email: data.email
+                    }
+                });
+            } catch (error) {
+                console.error('Error adding email to newsletter:', error);
+                // Continue even if there's an error adding to the database
+            }
+
+            // Render the newsletter confirmation email template
+            const newsletterHtml = await renderEmailTemplate('newsletter-confirmation', {
+                name: data.name,
+                email: data.email,
+                title: 'Confirmação de Inscrição na Newsletter da ASAPA',
+            });
+
             const newsletterOptions = {
                 from: process.env.EMAIL_FROM || 'noreply@asapa.com.br',
                 to: data.email,
                 subject: 'Confirmação de Inscrição na Newsletter da ASAPA',
-                html: `
-          <h1>Obrigado por se inscrever na nossa newsletter!</h1>
-          <p>Olá ${data.name},</p>
-          <p>Agradecemos por se inscrever na newsletter da ASAPA. Você receberá atualizações sobre nossos eventos e atividades.</p>
-          <p>Atenciosamente,</p>
-          <p>Equipe ASAPA</p>
-        `,
+                html: newsletterHtml,
             };
 
             await transporter.sendMail(newsletterOptions);

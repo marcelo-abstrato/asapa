@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        /* Reset CSS */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #000000;
+            background-color: #f3f4f6;
+        }
+
+        /* ASAPA Colors */
+        :root {
+            --blue-primary: #1d4ed8;
+            --blue-dark: #1e40af;
+            --blue-light: #dbeafe;
+            --black: #000000;
+            --gray-dark: #4b5563;
+            --gray-medium: #9ca3af;
+            --gray-light: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--white);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: var(--blue-primary);
+            color: var(--white);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        /* Content */
+        .content {
+            padding: 30px 20px;
+            background-color: var(--white);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--blue-primary);
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--blue-primary);
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .small {
+            font-size: 14px;
+            color: var(--gray-dark);
+        }
+
+        /* Button */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--blue-primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 20px 0;
+        }
+
+        .button:hover {
+            background-color: var(--blue-dark);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--gray-light);
+            color: var(--gray-dark);
+            font-size: 14px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .social-links {
+            margin: 15px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--blue-primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media only screen and (max-width: 620px) {
+            .container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="https://asapa.org.br/logo.png" alt="ASAPA Logo">
+    </div>
+
+    <div class="content">
+        <%- body %>
+    </div>
+
+    <div class="footer">
+        <div class="social-links">
+            <a href="https://facebook.com/asapa">Facebook</a>
+            <a href="https://instagram.com/asapa">Instagram</a>
+            <a href="https://asapa.org.br">Website</a>
+        </div>
+        <p>&copy; <%= new Date().getFullYear() %> ASAPA - Associação de Surf das Areias do Campeche. Todos os direitos
+            reservados.</p>
+        <p class="small">Este e-mail foi enviado para <%= email %>. Se você não deseja mais receber nossos e-mails, <a
+                    href="<%= unsubscribeUrl %>">clique aqui para cancelar sua inscrição</a>.</p>
+    </div>
+</div>
+</body>
+</html>

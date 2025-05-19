@@ -1,6 +1,7 @@
 "use client";
 
 import {Button, Modal} from "@/components/ui"
+import {Alert} from "@/components/ui/alert"
 import {useEffect, useState} from "react"
 import {CheckCircle} from "lucide-react"
 
@@ -22,6 +23,7 @@ export function Associese() {
     });
 
     const [showThankYouPopup, setShowThankYouPopup] = useState(false);
+    const [showErrorAlert, setShowErrorAlert] = useState(false);
 
     // Auto-close popup after 5 seconds
     useEffect(() => {
@@ -47,6 +49,10 @@ export function Associese() {
         setShowThankYouPopup(false);
     };
 
+    const closeErrorAlert = () => {
+        setShowErrorAlert(false);
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -58,6 +64,7 @@ export function Associese() {
                 success: false,
                 error: "Por favor, preencha todos os campos e aceite os termos."
             });
+            setShowErrorAlert(true);
             return;
         }
 
@@ -105,6 +112,7 @@ export function Associese() {
                 success: false,
                 error: error instanceof Error ? error.message : 'Ocorreu um erro ao enviar a inscrição'
             });
+            setShowErrorAlert(true);
         }
     };
 
@@ -246,14 +254,16 @@ export function Associese() {
                                     <strong className="font-bold">Sucesso!</strong>
                                     <span className="block sm:inline"> Sua inscrição foi enviada com sucesso.</span>
                                 </div>
-                            ) : status.submitted && !status.success ? (
-                                <div
-                                    className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                                    role="alert">
-                                    <strong className="font-bold">Erro!</strong>
-                                    <span className="block sm:inline"> {status.error}</span>
-                                </div>
                             ) : null}
+
+                            <Alert
+                                variant="error"
+                                title="Erro!"
+                                message={status.error}
+                                isOpen={showErrorAlert}
+                                onClose={closeErrorAlert}
+                                autoCloseTimeout={5000}
+                            />
 
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import type {Metadata} from "next"
 import {DesktopNav, MobileMenu} from "@/components/navigation"
 import {navLinks} from "@/mocks/navigation"
 import {SpeedInsights} from "@vercel/speed-insights/next"
@@ -16,6 +17,14 @@ import {
     QuemSomos,
     Transparencia
 } from "@/components/sections"
+
+export const metadata: Metadata = {
+    title: "ASAPA - Associação de Surf do Atalaia e Praia do Amor | Página Inicial",
+    description: "Conheça a ASAPA, uma associação dedicada ao surf, preservação ambiental e desenvolvimento comunitário nas praias do Atalaia e do Amor.",
+    alternates: {
+        canonical: "/"
+    }
+}
 
 export default async function Home() {
   return (

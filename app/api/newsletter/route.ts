@@ -1,9 +1,47 @@
 import {NextResponse} from 'next/server';
 import prisma from '@/lib/prisma';
 import nodemailer from 'nodemailer';
+import ejs from 'ejs';
+import fs from 'fs';
+import path from 'path';
 
 interface NewsletterFormData {
     email: string;
+}
+
+/**
+ * Renders an email template with the provided data
+ * @param template The name of the template to render (without extension)
+ * @param data The data to pass to the template
+ * @returns The rendered HTML
+ */
+async function renderEmailTemplate(template: string, data: Record<string, any>): Promise<string> {
+    try {
+        // Path to the template
+        const templatePath = path.join(process.cwd(), 'templates', 'emails', `${template}.ejs`);
+        const layoutPath = path.join(process.cwd(), 'templates', 'layouts', 'base.ejs');
+
+        // Read the template and layout files
+        const templateContent = fs.readFileSync(templatePath, 'utf-8');
+        const layoutContent = fs.readFileSync(layoutPath, 'utf-8');
+
+        // Render the template
+        const body = await ejs.render(templateContent, data, {async: true});
+
+        // Render the layout with the template content
+        const html = await ejs.render(layoutContent, {
+            ...data,
+            body,
+            title: data.title || 'ASAPA - Associação de Surf das Areias do Campeche',
+            email: data.email || 'membro@asapa.org.br',
+            unsubscribeUrl: data.unsubscribeUrl || 'https://asapa.org.br/unsubscribe',
+        }, {async: true});
+
+        return html;
+    } catch (error) {
+        console.error('Error rendering email template:', error);
+        throw new Error(`Failed to render email template: ${error instanceof Error ? error.message : String(error)}`);
+    }
 }
 
 export async function POST(request: Request) {
@@ -18,18 +56,7 @@ export async function POST(request: Request) {
             );
         }
 
-        // Check if email already exists in the database
-        const existingSubscriber = await prisma.newsletter.findUnique({
-            where: {
-                email: data.email
-            }
-        });
-
-        if (existingSubscriber) {
-            return NextResponse.json(
-                {success: true, message: 'Email já cadastrado na newsletter'}
-            );
-        }
+        // No longer checking for existing subscribers as we now allow duplicate emails
 
         // Add email to the database
         await prisma.newsletter.create({
@@ -49,17 +76,19 @@ export async function POST(request: Request) {
             },
         });
 
+        // Render the newsletter confirmation email template
+        const newsletterHtml = await renderEmailTemplate('newsletter-confirmation', {
+            name: 'Assinante', // Since we only have the email, we use a generic name
+            email: data.email,
+            title: 'Confirmação de Inscrição na Newsletter da ASAPA',
+        });
+
         // Send confirmation email
         const mailOptions = {
             from: process.env.EMAIL_FROM || 'noreply@asapa.com.br',
             to: data.email,
             subject: 'Confirmação de Inscrição na Newsletter da ASAPA',
-            html: `
-                <h1>Obrigado por se inscrever na nossa newsletter!</h1>
-                <p>Agradecemos por se inscrever na newsletter da ASAPA. Você receberá atualizações sobre nossos eventos e atividades.</p>
-                <p>Atenciosamente,</p>
-                <p>Equipe ASAPA</p>
-            `,
+            html: newsletterHtml,
         };
 
         await transporter.sendMail(mailOptions);

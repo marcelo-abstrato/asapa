@@ -91,8 +91,8 @@ export const diretoriaMembers = [
     },
     {
         "name": "Priscilla Maria Menel Lemos",
-        "role": "",
-        "bio": "",
+        "role": "Diretora Tecnica de Bodyboarding",
+        "bio": "47 anos, Diretora Tecnica de Bodyboarding, Bióloga, Dra. Recursos Genéticos Vegetais, Mestre em Biotecnologia, Alquimista, Bodyboarder e Professora de Bodybording.",
         "imageUrl": "/imagens/diretores/priscilla_maria_menel_lemos.jpeg"
     }
 ];

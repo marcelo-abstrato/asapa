@@ -1,16 +1,27 @@
 import Link from "next/link"
 import Image from "next/image"
+import type {Metadata} from "next"
 import {Button} from "@/components/ui/button"
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
 import {DesktopNav, MobileMenu} from "@/components/navigation"
 import {navLinks} from "@/mocks/navigation"
 import {Footer} from "@/components/sections"
-import {BarChart, FileText, Users} from "lucide-react"
+import {ArrowLeft, BarChart, FileText, Users} from "lucide-react"
 import {atasReunioes, doacao, relatoriosFinanceiros} from "@/mocks/transparencia"
+import {PDFViewer} from "@/components/ui/PDFViewer"
 
-export const metadata = {
-    title: "Transparência | ASAPA",
-    description: "Acesso a todos os relatórios financeiros, atas de reuniões e informações sobre doações da ASAPA",
+export const metadata: Metadata = {
+    title: "Transparência e Prestação de Contas | ASAPA - Associação de Surf do Atalaia e Praia do Amor",
+    description: "Acesso a todos os relatórios financeiros, atas de reuniões e informações sobre doações da ASAPA. Conheça nossa gestão transparente e responsável.",
+    alternates: {
+        canonical: "/transparencia"
+    },
+    openGraph: {
+        title: "Transparência e Prestação de Contas | ASAPA",
+        description: "Acesso a todos os relatórios financeiros, atas de reuniões e informações sobre doações da ASAPA. Conheça nossa gestão transparente e responsável.",
+        url: "https://asapa.com.br/transparencia",
+        type: "website",
+    }
 }
 
 export default function TransparenciaPage() {
@@ -45,9 +56,18 @@ export default function TransparenciaPage() {
                                 Acesso a todos os relatórios financeiros, atas de reuniões e informações sobre doações
                                 da ASAPA.
                             </p>
+
+                            <div className="mt-6">
+                                <Link href="/#transparencia">
+                                    <Button variant="outline" className="text-[#1d4ed8] border-[#1d4ed8]">
+                                        <ArrowLeft className="h-4 w-4 mr-2"/>
+                                        Voltar para a Página Inicial
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
 
-                        <Tabs defaultValue="financeiro" className="w-full max-w-4xl mx-auto">
+                        <Tabs defaultValue="financeiro" className="w-full max-w-4xl mx-auto mt-8">
                             <TabsList className="grid w-full grid-cols-3">
                                 <TabsTrigger value="financeiro">
                                     <span className="hidden md:inline">Relatórios</span>
@@ -101,10 +121,13 @@ export default function TransparenciaPage() {
                                                     <h4 className="font-medium">{report.title}</h4>
                                                     <p className="text-sm text-gray-500">Publicado em: {report.date}</p>
                                                 </div>
-                                                <Button variant="ghost" size="sm" className="text-[#1d4ed8]">
-                                                    <FileText className="h-4 w-4 mr-2"/>
-                                                    Visualizar
-                                                </Button>
+                                                <PDFViewer
+                                                    filePath={report.file}
+                                                    buttonVariant="ghost"
+                                                    buttonSize="sm"
+                                                    buttonClassName="text-[#1d4ed8]"
+                                                    buttonText="Visualizar"
+                                                />
                                             </div>
                                         ))}
                                     </div>
@@ -132,10 +155,13 @@ export default function TransparenciaPage() {
                                                     <p className="text-sm text-gray-500">Realizada
                                                         em: {meeting.date}</p>
                                                 </div>
-                                                <Button variant="ghost" size="sm" className="text-[#1d4ed8]">
-                                                    <FileText className="h-4 w-4 mr-2"/>
-                                                    Visualizar
-                                                </Button>
+                                                <PDFViewer
+                                                    filePath={meeting.file}
+                                                    buttonVariant="ghost"
+                                                    buttonSize="sm"
+                                                    buttonClassName="text-[#1d4ed8]"
+                                                    buttonText="Visualizar"
+                                                />
                                             </div>
                                         ))}
                                     </div>

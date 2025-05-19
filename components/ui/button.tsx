@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react"
 import {Slot} from "@radix-ui/react-slot"
 import {cva, type VariantProps} from "class-variance-authority"
@@ -49,12 +51,31 @@ function Button({
     disabledTooltip?: string
 }) {
     const Comp = asChild ? Slot : "button"
+    const [showTooltip, setShowTooltip] = React.useState(false)
+
+    const handleClick = (e: React.MouseEvent) => {
+        if (props.disabled && disabledTooltip) {
+            e.preventDefault()
+            setShowTooltip(true)
+            // Hide tooltip after 3 seconds
+            setTimeout(() => setShowTooltip(false), 3000)
+        }
+
+        if (props.onClick && !props.disabled) {
+            props.onClick(e as any)
+        }
+    }
+
+    // Create a new props object without the onClick prop
+    const {onClick: _, ...restProps} = props;
+
     const buttonElement = (
         <Comp
             data-slot="button"
             className={cn(buttonVariants({variant, size, className}))}
             title={props.disabled && !disabledTooltip ? props.title : undefined}
-            {...props}
+            onClick={handleClick}
+            {...restProps}
         />
     )
 
@@ -62,7 +83,7 @@ function Button({
     if (props.disabled && disabledTooltip) {
         return (
             <div className="relative inline-block">
-                <Tooltip content={disabledTooltip}>
+                <Tooltip content={disabledTooltip} open={showTooltip} onOpenChange={setShowTooltip}>
                     {buttonElement}
                 </Tooltip>
             </div>
